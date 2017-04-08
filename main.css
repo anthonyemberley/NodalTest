@@ -16,6 +16,18 @@
 	url('Fonts/Lato-Medium.ttf');
 }
 
+@font-face{
+	font-family: "Futura";
+	src: url('Fonts/Futura-Medium.ttf'),
+	url('Fonts/Futura-Medium.ttf');
+}
+
+@font-face{
+	font-family: "Futura Bold";
+	src: url('Fonts/Futura-Bold.ttf'),
+	url('Fonts/Futura-Bold.ttf');
+}
+
 .content {
 	height: 100%;
 	width: 100%;
@@ -23,6 +35,13 @@
 	display: block;
 	background-image: url(Assets/NodalWebBackgroundDesktop.svg);
 	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.content-bottom {
+	height: 100%;
+	width: 100%;
+	background-color: white;
 	background-size: cover;
 }
 
@@ -69,10 +88,107 @@ html{
 	height: 100%;
 }
 
+h1{
+	font-family: "Futura";
+}
+
+.images {
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+
+
+table {
+	width: 100%;
+	height: 100%;
+}
+
 td {
 	text-align: center;
+	font-size: 24px;
+	font-family: "Futura";
+	color: #58595B;
+}
+
+td > img{
+	height: 90%;
+	/*display: block;*/
+	margin-left: auto;
+	margin-right: auto;
+	object-fit: contain;
+}
+
+.call_to_action {
+	height: 25%;
+	font-family: "Futura";
+	color: #58595B;
+	background-color: #A3DBE2;
+	padding-left:40px;
+	padding-right:40px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+.title{
+	height: 15%;
+	vertical-align: middle;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.title > h1{
+	padding-top: 5%;
+}
+
+.subtitle > h4{
+	padding-top: 8%;
+	font-family: "Futura";
+}
+
+.subtitle{
+	height: 10%;
+	vertical-align: middle;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 .logo{
 	font-family: "Lato Light";
+}
+
+.features{
+	height: 65%;
+	background-color: white;
+	background-size: cover;
+}
+
+.summary{
+	height: 25%;
+	background-color: #A3DBE2;
+	background-size: cover;
+}
+
+.footer{
+	height: 10%;
+	background-color: white;
+	background-size: cover;
+}
+
+.footer-links a{
+	color: #58595B;
+}
+
+.footer-links a:hover{
+	color: #58595B;
+	font-family: "Futura Bold";
+	text-decoration: none;
+}
+
+.footer-links td{
+	font-size:14px;
+	width:12.5%;
+	color: #58595B;
 }
