@@ -1,0 +1,78 @@
+@font-face{
+	font-family: "Lato Light";
+    src: url('Fonts/Lato-Light.ttf'),
+    url('Fonts/Lato-Light.eot'); /* IE */
+}
+
+@font-face{
+	font-family: "Lato Bold";
+	src: url('Fonts/Lato-Bold.ttf'),
+	url('Fonts/Lato-Bold.ttf');
+}
+
+@font-face{
+	font-family: "Lato Medium";
+	src: url('Fonts/Lato-Medium.ttf'),
+	url('Fonts/Lato-Medium.ttf');
+}
+
+.content {
+	height: 100%;
+	width: 100%;
+	resize: both;
+	display: block;
+	background-image: url(Assets/NodalWebBackgroundDesktop.svg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.transparent {
+	border-width: 0px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: rgba(0,0,0,0.0);
+    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+.navbar {
+	padding-top: 0%;
+}
+
+.navbar-brand {
+	padding-top: auto;
+	padding-bottom: auto;
+	padding-left: 30px;
+}
+
+.navbar-brand img {
+	height: 100%;
+}
+
+.link > img:hover{
+	border: 1px solid #FFFFFF;
+}
+
+.nav {
+	padding-top: 0;
+	padding-bottom: 0;
+	color: #FFFFFF;
+}
+
+body{
+	height: 100%;
+	min-height: 100%;
+}
+
+html{
+	height: 100%;
+}
+
+td {
+	text-align: center;
+}
+
+.logo{
+	font-family: "Lato Light";
+}
