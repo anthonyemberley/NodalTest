@@ -231,3 +231,50 @@ td > img{
 	width:12.5%;
 	color: #58595B;
 }
+
+.footer2{
+	display: none;
+	height: 10%;
+	background-color: white;
+	background-size: cover;
+}
+
+.footer2-links a{
+	color: #58595B;
+}
+
+.footer2-links a:hover{
+	color: #58595B;
+	font-family: "Futura Bold";
+	text-decoration: none;
+}
+
+.footer2-links td{
+	font-size:14px;
+	width:25%;
+	color: #58595B;
+}
+
+.footer2-ims td{
+	font-size:14px;
+	width:100%;
+	color: #58595B;
+}
+
+@media screen and (max-width: 1024px) {
+    .footer {
+        display: none !important;
+    }
+
+    .header {
+    	display: none !important;
+    }
+
+    .footer2 {
+    	display: table !important;
+    }
+
+    .header2 {
+    	display: block !important;
+    }
+}
