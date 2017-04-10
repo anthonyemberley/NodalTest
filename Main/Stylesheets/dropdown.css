@@ -1,0 +1,50 @@
+/*
+.dropdown {
+    position: relative;
+    display: inline-block;
+    align: right;
+}*/
+
+@font-face{
+    font-family: "Futura";
+    src: url('../Fonts/Futura-Medium.ttf'),
+    url('../Fonts/Futura-Medium.ttf');
+}
+
+@font-face{
+    font-family: "Futura Bold";
+    src: url('../Fonts/Futura-Bold.ttf'),
+    url('../Fonts/Futura-Bold.ttf');
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    font-family: "Futura";
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    background-color: rgba(0,0,0,0);
+    min-width: 160px;
+    padding: 0px 60px;
+    z-index: 1;
+}
+
+.dropdown-content a{
+    color: white;
+}
+
+.dropdown-content a:hover{
+    color: white;
+    font-family: "Futura Bold";
+    text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    background-color: Transparent;
+    border: none;
+}
