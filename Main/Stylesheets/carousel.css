@@ -1,0 +1,51 @@
+.slides{
+	height: 80%;
+	width: 100%;
+}
+
+.carousel-inner{
+	height:100%;
+}
+
+.carousel h1{
+	vertical-align: middle;
+	padding-top: 22%;
+	padding-left: 10%;
+	color: white;
+	font-size: 48px;
+}
+
+.item{
+	height:100%;
+}
+
+.right {
+	margin-top: 25%;
+	opacity: 0.6;
+  	filter:alpha(opacity=100);
+	padding-right: 10px;
+	height: 10%;
+	width: 2%;
+	vertical-align: middle;
+	content: url("../Assets/rightarrow-01.png");
+}
+
+.right:hover{
+	opacity:1;
+}
+
+.left {
+	margin-top: 25%;
+	opacity: 0.6;
+  	filter:alpha(opacity=100);
+	padding-left: 10px;
+	height: 10%;
+	width: 2%;
+	vertical-align: middle;
+	//content: url("../Assets/leftarrow-01.png");
+	background-image: url("../Assets/leftarrow-01.png");;
+}
+
+.left:hover{
+	opacity:1;
+}
