@@ -82,8 +82,7 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'mapbox-gl/js/geo/transform': path.join(__dirname, "mapbox-gl/js/geo/transform"),
-      'mapbox-gl': path.join(__dirname, "mapbox-gl/dist/mapbox-gl.js"),
+      'mapbox-gl$': path.join(__dirname, '../node_modules/mapbox-gl/dist/mapbox-gl.js'),
       'react-native': 'react-native-web'
     }
   },

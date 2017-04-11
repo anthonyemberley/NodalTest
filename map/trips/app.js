@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Mapbox from 'react-redux-mapbox-gl';
-import mapboxgl from 'mapbox-gl';
+/* global window,document */
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
-import DeckGLOverlay from '../trips/deckgl-overlay.js';
+import DeckGLOverlay from './deckgl-overlay.js';
 
 import {json as requestJson} from 'd3-request';
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
 
-class App extends Component {
+class Root extends Component {
 
   constructor(props) {
     super(props);
@@ -96,4 +94,4 @@ class App extends Component {
   }
 }
 
-export default App;
+render(<Root />, document.body.appendChild(document.createElement('div')));
