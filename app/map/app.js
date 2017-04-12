@@ -8,6 +8,7 @@ import {json as requestJson} from 'd3-request';
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
+const strokeWidth = 8;
 
 class Root extends Component {
 
@@ -19,20 +20,18 @@ class Root extends Component {
         width: 500,
         height: 500
       },
-      buildings: null,
-      trips: null,
-      time: 0
+      routes: null,
+      hazards: null
     };
 
-    requestJson('./data/buildings.json', (error, response) => {
+    requestJson('./data/test-routes.json', (error, response) => {
       if (!error) {
-        this.setState({buildings: response});
+        this.setState({routes: response});
       }
     });
-
-    requestJson('./data/trips.json', (error, response) => {
+    requestJson('./data/hazards.json', (error, response) => {
       if (!error) {
-        this.setState({trips: response});
+        this.setState({hazards: response});
       }
     });
   }
@@ -40,24 +39,6 @@ class Root extends Component {
   componentDidMount() {
     window.addEventListener('resize', this._resize.bind(this));
     this._resize();
-    this._animate();
-  }
-
-  componentWillUnmount() {
-    if (this._animation) {
-      window.cancelAnimationFrame(this._animationFrame);
-    }
-  }
-
-  _animate() {
-    const timestamp = Date.now();
-    const loopLength = 1800;
-    const loopTime = 60000;
-
-    this.setState({
-      time: ((timestamp % loopTime) / loopTime) * loopLength
-    });
-    this._animationFrame = window.requestAnimationFrame(this._animate.bind(this));
   }
 
   _resize() {
@@ -74,22 +55,29 @@ class Root extends Component {
   }
 
   render() {
-    const {viewport, buildings, trips, time} = this.state;
+    const {viewport, routes, hazards} = this.state;
 
     return (
-      <MapGL
-        {...viewport}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
-        perspectiveEnabled={true}
-        onChangeViewport={this._onChangeViewport.bind(this)}
-        mapboxApiAccessToken={MAPBOX_TOKEN}>
-        <DeckGLOverlay viewport={viewport}
-          buildings={buildings}
-          trips={trips}
-          trailLength={180}
-          time={time}
-          />
-      </MapGL>
+      <div>
+        <MapGL
+          {...viewport}
+          mapStyle="mapbox://styles/mapbox/dark-v9"
+          perspectiveEnabled={true}
+          onChangeViewport={this._onChangeViewport.bind(this)}
+          mapboxApiAccessToken={MAPBOX_TOKEN}>
+          <DeckGLOverlay viewport={viewport}
+            strokeWidth={strokeWidth}
+            routes={routes}
+            hazards={hazards} />
+        </MapGL>
+        {/*} trying to add buttons on top of map
+        <div class='pill'>
+          <a href='#' class='button'>Pizza Dog</a>
+          <a href='#' class='button'>Penny Dog</a>
+          <a href='#' class='button'>Charlotte Dog</a>
+        </div>
+      */}
+      </div>
     );
   }
 }

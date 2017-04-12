@@ -126,29 +126,19 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       },
+      // Process JS with Babel.
       {
-      // Compile ES2015 using buble
         test: /\.(js|jsx)$/,
-        loader: 'buble-loader',
-        include: [path.resolve('.')],
-        exclude: [/node_modules/],
-        options: {
-          objectAssign: 'Object.assign'
+        include: paths.appSrc,
+        loader: 'babel',
+        query: {
+          
+          // This is a feature of `babel-loader` for webpack (not Babel itself).
+          // It enables caching results in ./node_modules/.cache/babel-loader/
+          // directory for faster rebuilds.
+          cacheDirectory: true
         }
       },
-      // Process JS with Babel.
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   include: paths.appSrc,
-      //   loader: 'babel',
-      //   query: {
-          
-      //     // This is a feature of `babel-loader` for webpack (not Babel itself).
-      //     // It enables caching results in ./node_modules/.cache/babel-loader/
-      //     // directory for faster rebuilds.
-      //     cacheDirectory: true
-      //   }
-      // },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.
