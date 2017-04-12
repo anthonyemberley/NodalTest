@@ -5,6 +5,12 @@
   padding: 0;
   font-weight: 300;
 }
+@font-face{
+	font-family: "Futura";
+	src: url('../Fonts/Futura-Medium.ttf'),
+	url('../Fonts/Futura-Medium.ttf');
+}
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
@@ -26,6 +32,7 @@ body {
 .container {
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 100px;
   padding: 80px 0;
   height: 400px;
   text-align: center;
@@ -68,7 +75,7 @@ form input:hover {
 form input:focus {
   background-color: white;
   width: 300px;
-  color: #53e3a6;
+  color: #58595B;
 }
 form button {
   -webkit-appearance: none;
@@ -78,7 +85,7 @@ form button {
   background-color: white;
   border: 0;
   padding: 10px 15px;
-  color: #53e3a6;
+  color: #58595B;
   border-radius: 3px;
   width: 250px;
   cursor: pointer;
