@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Nodal, Inc. </title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href = "./Stylesheets/bootstrap.css" rel = "stylesheet">
+		<link href = "./Stylesheets/main.css" rel = "stylesheet">
+		<link href = "./Stylesheets/carousel.css" rel = "stylesheet">
+		<link href = "./Stylesheets/dropdown.css" rel = "stylesheet">
+		<link href = "./Stylesheets/scroll.css" rel = "stylesheet">
+		<link href = "./Stylesheets/tabs.css" rel = "stylesheet">
+		<script src = "./Scripts/jquery-3.2.1.min.js"></script>
+		<script src ="./Scripts/bootstrap.js"></script>
+	</head>
+
+	<body>
+		<div class = "content">
+			<div class = "header2 transparent" style = "display: none">
+				<div class="dropdown" style="float:left;">
+  					<button class="dropbtn"><img style = "height:30px; margin: 15px; display: inline-block" src = "Assets/NodalWebLogo-01.png"></button>
+  					<div class="dropdown-content">
+    				<a href="features.html">Features</a><br>
+    				<a href="products.html">Products</a><br>
+    				<a href="pricing.html">Pricing</a><br>
+    				<a href="documentation.html">Documentation</a><br>
+    				<a href="support.html">Support</a><br>
+  				</div>
+  				
+				</div>
+				<a style = "float:right" href="login.html"><img align = "right" style = "height:30px; margin: 15px" src = "Assets/login-01.png"></a>
+			</div>
+
+			<div class = "header transparent">
+				<table>
+					<tr class = "header-links">
+						<td class = "imlink"><a href="index.html"><img style = "height:30px; padding-top:2px; display: inline-block" src = "Assets/NodalWebLogo-01.png"></a></td>
+						<td><a href="features.html">Features</a></td>
+						<td class = "active-link"><a href="products.html">Products</a></td>
+						<td><a href="pricing.html">Pricing</a></td>
+						<td></td>
+						<td></td>
+						<td><a href="documentation.html">Documentation</a></td>
+						<td><a href="support.html">Support</a></td>
+						<td class = "imlink"><a href="login.html"><img style = "height:30px" src = "Assets/login-01.png"></a></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="w3-container">
+  				<div class="w3-row">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Analytics');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/analytics-01.png"></div>
+    				</a>
+
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Recommendations');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/recommendations-01.png"></div>
+    				</a>
+    
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Notifications');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/notifications-01.png"></div>
+    				</a>
+
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Cognition');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/cognition-01.png"></div>
+    				</a>
+
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Vision');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/vision-01.png"></div>
+    				</a>
+
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Sense');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/sense-01.png"></div>
+    				</a>
+
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Connect');">
+      					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/connect-01.png"></div>
+    				</a>
+  				</div>
+
+		  		<div id="Analytics" class="w3-container product" style="display:none">
+		    		<h2>N O D A L&nbsp&nbsp&nbsp&nbspA N A L Y T I C S</h2>
+		  		</div>
+
+  				<div id="Recommendations" class="w3-container product" style="display:none">
+    				<h2>N O D A L&nbsp&nbsp&nbsp&nbspR E C O M M E N D A T I O N S</h2>
+
+  				</div>
+
+  				<div id="Notifications" class="w3-container product" style="display:none">
+    				<h2>N O D A L&nbsp&nbsp&nbsp&nbspN O T I F I C A T I O N S</h2>
+  				</div>
+
+  				<div id="Cognition" class="w3-container product" style="display:none">
+    				<h2>N O D A L&nbsp&nbsp&nbsp&nbspC O G N I T I O N</h2>
+  				</div>
+
+  				<div id="Vision" class="w3-container product" style="display:none">
+    				<h2>N O D A L&nbsp&nbsp&nbsp&nbspV I S I O N</h2>
+  				</div>
+
+  				<div id="Sense" class="w3-container product" style="display:none">
+    				<h2>N O D A L&nbsp&nbsp&nbsp&nbspS E N S E</h2>
+  				</div>
+
+  				<div id="Connect" class="w3-container product" style="display:none">
+    				<h2>N O D A L&nbsp&nbsp&nbsp&nbspC O N N E C T</h2>
+  				</div>
+			</div>
+
+			<script>
+				function openProduct(evt, productName) {
+  					var i, x, tablinks;
+  					x = document.getElementsByClassName("product");
+  					
+  					for (i = 0; i < x.length; i++) {
+     					x[i].style.display = "none";
+  					}
+  
+  					tablinks = document.getElementsByClassName("tablink");
+  
+  					for (i = 0; i < x.length; i++) {
+     					tablinks[i].className = tablinks[i].className.replace(" w3-active-tab", "");
+  					}
+  
+  					document.getElementById(productName).style.display = "inline";
+  					evt.currentTarget.firstElementChild.className += " w3-active-tab";
+				}
+			</script>
+		</div>
+
+		<div class = "footer footer-static">
+			<table>
+				<tr class = "footer-links">
+					<td><a href="index.html"><img style = "height:20px" src = "Assets/NodalWebLogoGray-01.png"></a></td>
+					<td> </td>
+					<td><a href="about.html">About</a></td>
+					<td><a href="jobs.html">Jobs</a></td>
+					<td><a href="contact.html">Contact</a></td>
+					<td><a href="terms.html">Terms</a></td>
+					<td> </td>
+					<td>&copy Nodal, Inc.</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class = "footer2" style = "display: none;">
+			<br>
+			<table>
+				<tr class = "footer2-links">
+					<td><a href="about.html">About</a></td>
+					<td><a href="jobs.html">Jobs</a></td>
+					<td><a href="contact.html">Contact</a></td>
+					<td><a href="terms.html">Terms</a></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr class = "footer2-ims">
+					<td>&copy Nodal, Inc.</td>
+				</tr>
+				<tr class = "footer2-ims">
+					<td><a href="index.html"><img style = "height:20px" src = "Assets/NodalWebLogoGray-01.png"></a></td>
+				</tr>
+			</table>
+			<br>
+		</div>
+	</body>
+
+</html>

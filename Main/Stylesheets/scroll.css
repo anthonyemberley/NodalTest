@@ -65,6 +65,10 @@
 	font-family: "Lato Light";
 }
 
+.product-info{
+	height: 70% !important;
+}
+
 .footer2{
 	width:100%;
 }

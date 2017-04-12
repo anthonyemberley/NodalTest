@@ -191,6 +191,16 @@ td > img{
 	border: 2px solid #FFFFFF;
 }
 
+.active-link a{
+	color: white;
+	font-family: "Futura";
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: 2px solid #FFFFFF;
+}
+
 .imlink a:hover{
 	border: none !important;
 	text-decoration: none;
