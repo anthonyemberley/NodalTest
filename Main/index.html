@@ -7,9 +7,8 @@
 		<link href = "./Stylesheets/main.css" rel = "stylesheet">
 		<link href = "./Stylesheets/carousel.css" rel = "stylesheet">
 		<link href = "./Stylesheets/dropdown.css" rel = "stylesheet">
-
-  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-  		</script>
+		<script src = "./Scripts/jquery-3.2.1.min.js"></script>
+		<script src ="./Scripts/bootstrap.js"></script>
 	</head>
 
 	<body>
@@ -44,71 +43,104 @@
 					</tr>
 				</table>
 			</div>
+
+			<div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
+			      
+			    <!-- Carousel items -->
+			    <div class="carousel-inner">
+			        <div class="item active">
+			        	<img src = "./Assets/Products/analytics-01.png">
+			        	<!--
+			        	<button href = "#">Nodal Analytics</button>
+			        	-->
+			        	<h1>You're unique.<br>Shouldn't your maps be too?</h1>
+			        </div>
+			        <div class="item">
+			        	<img src = "./Assets/Products/recommendations-01.png">
+			        	<!--
+			        	<button href = "../Maps/index.html">Nodal Recommendations</button>
+			        	-->
+			            <h1>Point A to Point B?<br>We can do so much more.</h1>
+			        </div>
+			        <div class="item">
+			        	<img src = "./Assets/Products/notifications-01.png">
+			        	<!--
+			        	<button href = "../Maps/index.html">Nodal Notifications</button>
+			        	-->
+			            <h1>Safety Evolves.<br>So Do Our Notifications.</h1>
+			        </div>
+			        <div class="item">
+			        	<img src = "./Assets/Products/cognition-01.png">
+			        	<!--
+			        	<button href = "../Maps/index.html">Nodal Cognition</button>
+			        	-->
+			            <h1>We learn...<br>so you don't have to.</h1>
+			        </div>
+			        <div class="item">
+			        	<img src = "./Assets/Products/vision-01.png">
+			        	<!--
+			        	<button href = "../Maps/index.html">Nodal Vision</button>
+			        	-->
+			            <h1>Learn to see<br>with a whole new kind of eye.</h1>
+			        </div>
+			        <div class="item">
+			        	<img src = "./Assets/Products/sense-01.png">
+			        	<!--
+			        	<button href = "../Maps/index.html">Nodal Sense</button>
+			        	-->
+			            <h1>Give cities<br>the sense of touch.</h1>
+			        </div>
+			        <div class="item">
+			        	<img src = "./Assets/Products/connect-01.png">
+			        	<!--
+			        	<button href = "../Maps/index.html">Nodal Connect</button>
+			        	-->
+			            <h1>You can't talk<br>without a language.</h1>
+			        </div>
+			    </div>
+			    <!-- Carousel nav -->
+			    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+			        <span class="glyphicon glyphicon-chevron-left"></span>
+			    </a>
+			    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+			        <span class="glyphicon glyphicon-chevron-right"></span>
+			    </a>
+
+			    <!-- Carousel indicators -->
+			    <ol class="carousel-indicators">
+			        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			        <li data-target="#myCarousel" data-slide-to="1"></li>
+			        <li data-target="#myCarousel" data-slide-to="2"></li>
+			        <li data-target="#myCarousel" data-slide-to="3"></li>
+			        <li data-target="#myCarousel" data-slide-to="4"></li>
+			        <li data-target="#myCarousel" data-slide-to="5"></li>
+			        <li data-target="#myCarousel" data-slide-to="6"></li>
+			    </ol> 
+			</div>
 			<!--
-			<nav class="navbar transparent navbar-inverse">
-  				<div class="container-fluid">
-    				<div class="navbar-header">
-      					<a class="navbar-brand"><img src="Assets/NodalWebLogo-01.png"></a>
-      					<a class="navbar-brand link" href = "features.html"><img src="Assets/features-01.png"></a>
-      					<a class="navbar-brand link" href = "products.html"><img src="Assets/products-01.png"></a>
-      					<a class="navbar-brand link" href = "pricing.html"><img src="Assets/pricing-01.png"></a>
-    				</div>
-    				
-    				<div class="navbar-header navbar-right">
-    					<a class="navbar-brand link" href = "documentation.html"><img src="Assets/documentation-01.png"></a>
-      					<a class="navbar-brand link" href = "support.html"><img src="Assets/support-01.png"></a>
-      					<a class="navbar-brand" href = "login.html"><img src="Assets/login-01.png"></a>
-    				</div>
-  				</div>
-			</nav>
-			
-			<div class = "slides">
-				<span class = "leftarrow">
-					<img class = "left" src="Assets/leftarrow-01.png" onclick = "left()">
-				</span>
-				<span class = "text">
-				</span>
-				<span class = "rightarrow">
-					<img class = "right" src="Assets/rightarrow-01.png" onclick = "right()">
-				</span>
-  			</div>
-  			
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  				
-  				<!-- Indicators --
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   				<ol class="carousel-indicators">
     				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     				<li data-target="#myCarousel" data-slide-to="1"></li>
     				<li data-target="#myCarousel" data-slide-to="2"></li>
-    				<li data-target="#myCarousel" data-slide-to="3"></li>
   				</ol>
 
-  				<!-- Wrapper for slides --
-  				<div class="carousel-inner" role="listbox">
+				<div class="carousel-inner" role="listbox">
 
-    				<div class="item active">
-      					<h1>You're unique.<br>Shouldn't your maps be too?</h1>
-    				</div>
+				<div class="item active">
+						<h1>You're unique.<br>Shouldn't your maps be too?</h1>
+				</div>
 
-    				<div class="item">
-      					<h1>Point A to Point B?<br>There's so much more.</h1>
-    				</div>
+				<div class="item">
+						<h1>Point A to Point B?<br>There's so much more.</h1>
+				</div>
 
-    				<div class="item">
-      					<h1>We learn...<br>so you don't have to.</h1>
-    				</div>
+				<div class="item">
+						<h1>We learn...<br>so you don't have to.</h1>
+				</div>
 
-  				</div>
+				</div>
 
-  				
-
-  				<a class="left" href="#" role="button" onclick="left()">
-    				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    				<span class="sr-only">Previous</span>
-  				</a>
-  				-->
-
-  				<!--
   				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
     				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     				<span class="sr-only">Previous</span>
@@ -118,9 +150,9 @@
     				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     				<span class="sr-only">Next</span>
   				</a>
-  				-->
-			</div>
 
+			</div>
+			-->
 		</div>
 
 		<div class = "content-bottom">
