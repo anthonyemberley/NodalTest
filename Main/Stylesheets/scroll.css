@@ -1,0 +1,66 @@
+@font-face{
+	font-family: "Lato Light";
+    src: url('fonts/Lato-Light.ttf'),
+    url('../fonts/Lato-Light.eot'); /* IE */
+}
+
+@font-face{
+	font-family: "Lato Bold";
+	src: url('../fonts/Lato-Bold.ttf'),
+	url('../fonts/Lato-Bold.ttf');
+}
+
+@font-face{
+	font-family: "Lato Medium";
+	src: url('../fonts/Lato-Medium.ttf'),
+	url('../fonts/Lato-Medium.ttf');
+}
+
+.info::-webkit-scrollbar{
+	width: 3px;
+	background-color: transparent;
+}
+
+.info::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: rgba(27, 30, 50, 0.3);
+}
+
+.info{
+	margin-top: 2%;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5%;
+    padding-right:5%;
+    width: 85%;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.info ul{
+	list-style: none;
+  	margin-left: 0;
+  	padding-left: 0;
+}
+
+.info li{
+	font-family: "Lato Light";
+	padding-left: 1em;
+  	text-indent: 1em;
+}
+
+.info li:before{
+	content: "+ ";
+}
+
+.info h2{
+	font-family: "Lato Medium";
+	font-size: 24px;
+}
+
+.info p{
+	font-family: "Lato Light";
+}
