@@ -19,7 +19,7 @@ body {
 .wrapper {
   background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #72CCD7 0%, #00B3C2 100%);
+  background: linear-gradient(to bottom left, #00B3C2 0%, #A3DBE2 100%);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -38,7 +38,7 @@ body {
   text-align: center;
 }
 .container h1 {
-  font-size: 40px;
+  font-size: 50px;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
   -webkit-transition-timing-function: ease-in-put;
@@ -57,7 +57,7 @@ form input {
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.2);
-  width: 250px;
+  width: 300px;
   border-radius: 3px;
   padding: 10px 15px;
   margin: 0 auto 10px auto;
@@ -67,7 +67,7 @@ form input {
   color: white;
   -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;
-  font-weight: 300;
+  font-weight: 400;
 }
 form input:hover {
   background-color: rgba(255, 255, 255, 0.4);
@@ -87,7 +87,7 @@ form button {
   padding: 10px 15px;
   color: #58595B;
   border-radius: 3px;
-  width: 250px;
+  width: 300px;
   cursor: pointer;
   font-size: 18px;
   -webkit-transition-duration: 0.25s;
