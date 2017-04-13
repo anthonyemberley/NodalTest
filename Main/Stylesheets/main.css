@@ -135,6 +135,7 @@ button {
 	margin:0 auto;
 	margin-top:-10px;
 	border: 4px solid #FFFFFF
+
 }
 
 button:hover {
@@ -197,6 +198,7 @@ button:hover {
 .header-links a{
 	color: white;
 	font-family: "Futura";
+	transition-duration: 0.25s;
 }
 
 .header-links a:hover{
