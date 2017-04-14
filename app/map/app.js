@@ -5,8 +5,7 @@ import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
 import Select from 'react-select';
 import {Button} from 'react-bootstrap';
-
-
+import './favicon.ico';
 
 import {json as requestJson} from 'd3-request';
 
@@ -42,8 +41,8 @@ class Root extends PureComponent {
       },
       routes: null,
       hazards: null,
-      dropdownValue: "one",
-      selectedButton: 1
+      dropdownValue: null,
+      selectedRoute: 1,
 
     };
 
@@ -66,15 +65,23 @@ class Root extends PureComponent {
   _onDropdownChange(val) {
     this.setState({ 
       dropdownValue: val.value,
-      selectedButton: 1
+      selectedRoute: 1
     });
     //call API to get desired routes for the given metric
   }
 
   _onRouteButtonClick(buttonNumber) {
+    
+
+    var currentData = this.state.routes;
+    currentData[5].color = [0,0,0,255];
     this.setState({
-      selectedButton: buttonNumber
+      selectedRoute: buttonNumber,
+      routes: currentData
     });
+
+    //manipulate the json data colors here WHY DOESN"T THIS WORKKKKK
+
   }
 
 
@@ -103,14 +110,16 @@ class Root extends PureComponent {
   }
 
 
+
   //MARK: Render methods
 
   //Render the map and route overlays
   _renderMap() {
-    const {viewport, routes, hazards} = this.state;
+    const {viewport, routes, hazards, selectedRoute, dropdownValue} = this.state;
 
-    return (
-        <MapGL
+    let map = null;
+    if (dropdownValue !== null) {
+      map = <MapGL
           {...viewport}
           mapStyle="mapbox://styles/mapbox/dark-v9"
           perspectiveEnabled={true}
@@ -119,11 +128,23 @@ class Root extends PureComponent {
           <DeckGLOverlay viewport={viewport}
             strokeWidth={strokeWidth}
             routes={routes}
-            hazards={hazards} 
+            hazards={hazards}
+            selectedRoute= {selectedRoute}
             />
         </MapGL>
-
+    } else {
+      map = <MapGL
+          {...viewport}
+          mapStyle="mapbox://styles/mapbox/dark-v9"
+          perspectiveEnabled={true}
+          onChangeViewport={this._onChangeViewport.bind(this)}
+          mapboxApiAccessToken={MAPBOX_TOKEN}>
+        </MapGL>
+    }
+    return (
+      map
     );
+
 
   }
 
@@ -148,13 +169,14 @@ class Root extends PureComponent {
 
   //render the button group
   _renderRouteButtonGroup(){
-    const selectedButton = this.state.selectedButton;
+    const selectedButton = this.state.selectedRoute;
+    const dropdownValue = this.state.dropdownValue;
 
-    return(
-
-      //hacky solution to figure out which button is clicked
-      //TODO: figure out which button from the 
-      <div className="route-button-group">
+    let buttonGroup = null;
+        //hacky solution to figure out which button is clicked
+    //TODO: figure out which button from the 
+    if(dropdownValue != null){
+      buttonGroup = <div className="route-button-group">
         <Button 
           className="route-button"
           style = {selectedButton == 1 ? btnSelectedStyle : null} 
@@ -163,7 +185,7 @@ class Root extends PureComponent {
                 this._onRouteButtonClick(1)
           }}
           >
-          Route 1     5.72km     15mins
+          Route 1   |   5.72km   |  15mins
         </Button>
         <Button 
           className="route-button"
@@ -173,7 +195,7 @@ class Root extends PureComponent {
                 this._onRouteButtonClick(2)
           }}>
 
-          Route 2       6.35km      18mins
+          Route 2    |   6.35km   |   18mins
         </Button>
         <Button 
           block
@@ -182,9 +204,14 @@ class Root extends PureComponent {
                 this._onRouteButtonClick.bind(this)
                 this._onRouteButtonClick(3)
           }}>
-          Route 2       6.17km      17mins
+          Route 3   |    6.17km   |   17mins
         </Button>
       </div>
+    }
+    
+
+    return(
+      buttonGroup
     );
   }
 
