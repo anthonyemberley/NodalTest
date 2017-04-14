@@ -126,6 +126,10 @@ td > img{
 	object-fit: contain;
 }
 
+.productlink{
+	text-decoration: none !important;
+}
+
 .productbtn {
 	height: 40px;
 	width: 200px;
@@ -199,7 +203,7 @@ td > img{
 .header-links a{
 	color: white;
 	font-family: "Futura";
-	transition-duration: 0.25s;
+	/*transition-duration: 0.25s;*/
 }
 
 .header-links a:hover{
