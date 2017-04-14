@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
 import Select from 'react-select';
+import {Button} from 'react-bootstrap';
 
 
 
@@ -12,6 +13,9 @@ import {json as requestJson} from 'd3-request';
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
 const strokeWidth = 8;
+const btnSelectedStyle ={backgroundColor: '#00B3C2', borderColor:'#00B3C2'}
+
+
 
 
 var optionsSelect = [
@@ -38,7 +42,9 @@ class Root extends PureComponent {
       },
       routes: null,
       hazards: null,
-      dropdownValue: "one"
+      dropdownValue: "one",
+      selectedButton: 1
+
     };
 
     requestJson('./data/test-routes.json', (error, response) => {
@@ -58,8 +64,17 @@ class Root extends PureComponent {
 
   //every time the dropdown changes
   _onDropdownChange(val) {
-    this.setState({ dropdownValue: val.value });
+    this.setState({ 
+      dropdownValue: val.value,
+      selectedButton: 1
+    });
     //call API to get desired routes for the given metric
+  }
+
+  _onRouteButtonClick(buttonNumber) {
+    this.setState({
+      selectedButton: buttonNumber
+    });
   }
 
 
@@ -130,6 +145,49 @@ class Root extends PureComponent {
 
   }
 
+
+  //render the button group
+  _renderRouteButtonGroup(){
+    const selectedButton = this.state.selectedButton;
+
+    return(
+
+      //hacky solution to figure out which button is clicked
+      //TODO: figure out which button from the 
+      <div className="route-button-group">
+        <Button 
+          className="route-button"
+          style = {selectedButton == 1 ? btnSelectedStyle : null} 
+          onClick = {(e) => {
+                this._onRouteButtonClick.bind(this)
+                this._onRouteButtonClick(1)
+          }}
+          >
+          Route 1     5.72km     15mins
+        </Button>
+        <Button 
+          className="route-button"
+          style = {selectedButton == 2 ? btnSelectedStyle : null} 
+          onClick = {(e) => {
+                this._onRouteButtonClick.bind(this)
+                this._onRouteButtonClick(2)
+          }}>
+
+          Route 2       6.35km      18mins
+        </Button>
+        <Button 
+          block
+          style = {selectedButton == 3 ? btnSelectedStyle : null} 
+          onClick = {(e) => {
+                this._onRouteButtonClick.bind(this)
+                this._onRouteButtonClick(3)
+          }}>
+          Route 2       6.17km      17mins
+        </Button>
+      </div>
+    );
+  }
+
   //Render the Root component
   render() {
 
@@ -138,8 +196,11 @@ class Root extends PureComponent {
         <div id="map">
           {this._renderMap()}
         </div>
-        <div id="dropdown">
-          {this._renderDropDown()}
+        <div id="navigation-group">
+          <div id="dropdown">
+            {this._renderDropDown()}
+          </div>
+          {this._renderRouteButtonGroup()}
         </div>
       </div>
     );

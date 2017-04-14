@@ -1,9 +1,12 @@
-#dropdown{
+#navigation-group{
 	position: fixed;
 	z-index: 9;
     top: 5%;
     left: 5%;
     width: 300px;
+}
+
+#dropdown{
 
 }
 
@@ -11,4 +14,15 @@
 	margin: 0; 
 	padding: 0; 
 	overflow: hidden;
+}
+
+.route-button{
+	width: 300px;
+	white-space: pre;
+
+}
+
+.route-button-group{
+	margin-top: 25px;
+	white-space: pre;
 }
