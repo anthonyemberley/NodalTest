@@ -65,7 +65,7 @@ class Root extends PureComponent {
   _onDropdownChange(val) {
     this.setState({ 
       dropdownValue: val.value,
-      selectedButton: 1
+      selectedRoute: 1
     });
     //call API to get desired routes for the given metric
   }
@@ -83,7 +83,7 @@ class Root extends PureComponent {
       routes: currentData
     });
 
-    //manipulate the json data colors here
+    //manipulate the json data colors here WHY DOESN"T THIS WORKKKKK
 
   }
 
@@ -112,9 +112,12 @@ class Root extends PureComponent {
     });
   }
 
-  getColor(current){
+
+  //get color for the line layers
+  //This method should probably be held in a different file for modularity
+  getColor(d){
     console.log("test")
-    if (current == this.state.selectedRoute){
+    if (d.route == this.state.selectedRoute){
       return [43, 191, 203, 255]; 
     } else {
       return [43, 191, 203, 100];
@@ -135,13 +138,14 @@ class Root extends PureComponent {
           perspectiveEnabled={true}
           onChangeViewport={this._onChangeViewport.bind(this)}
           mapboxApiAccessToken={MAPBOX_TOKEN}>
-          <DeckGLOverlay viewport={viewport}
-            strokeWidth={strokeWidth}
-            routes={routes}
-            hazards={hazards}
-            selectedRoute={selectedRoute}
-            getColorYo={this.getColor.bind(this)} 
-            />
+          <div key={selectedRoute}>
+            <DeckGLOverlay viewport={viewport}
+              strokeWidth={strokeWidth}
+              routes={routes}
+              hazards={hazards}
+              getColor={this.getColor.bind(this)} 
+              />
+          </div>
         </MapGL>
 
     );
@@ -185,7 +189,7 @@ class Root extends PureComponent {
                 this._onRouteButtonClick(1)
           }}
           >
-          Route 1     5.72km     15mins
+          Route 1   |   5.72km   |  15mins
         </Button>
         <Button 
           className="route-button"
@@ -195,7 +199,7 @@ class Root extends PureComponent {
                 this._onRouteButtonClick(2)
           }}>
 
-          Route 2       6.35km      18mins
+          Route 2    |   6.35km   |   18mins
         </Button>
         <Button 
           block
@@ -204,7 +208,7 @@ class Root extends PureComponent {
                 this._onRouteButtonClick.bind(this)
                 this._onRouteButtonClick(3)
           }}>
-          Route 2       6.17km      17mins
+          Route 3   |    6.17km   |   17mins
         </Button>
       </div>
     );
