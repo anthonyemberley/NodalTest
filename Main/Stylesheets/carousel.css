@@ -39,7 +39,7 @@
 
 .carousel h1{
 	vertical-align: middle;
-	padding-top: 0%;
+	padding-top: 2% !important;
 	padding-left: 10%;
 	color: white;
 	font-size: 48px;
@@ -58,7 +58,7 @@
 
 	.carousel h1{
 	vertical-align: middle;
-	padding-top: 10%;
+	padding-top: 5% !important;
 	padding-left: 10%;
 	color: white;
 	font-size: 48px;
