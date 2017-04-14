@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import DeckGL, {LineLayer, ScatterplotLayer} from 'deck.gl';
 
+ 
 
 function getSize(type) {
   if (type.search('major') >= 0) {
@@ -23,6 +24,16 @@ export default class DeckGLOverlay extends Component {
     };
   }
 
+
+
+  //get color for the line layers
+  _getColor(d){
+    if (d.route == this.props.selectedRoute){
+      return [43, 191, 203, 255]; 
+    } else {
+      return [43, 191, 203, 100];
+    }
+  }
   
 
   _initialize(gl) {
@@ -31,7 +42,7 @@ export default class DeckGLOverlay extends Component {
   }
 
   render() {
-    const {viewport, routes, hazards, strokeWidth, selectedRoute, getColor} = this.props;
+    const {viewport, routes, hazards, strokeWidth, selectedRoute} = this.props;
 
     if (!routes || !hazards) {
       return null;
@@ -55,7 +66,10 @@ export default class DeckGLOverlay extends Component {
         fp64: false,
         getSourcePosition: d => d.start,
         getTargetPosition: d => d.end,
-        getColor: getColor,
+        updateTriggers:{
+          getColor: selectedRoute
+        },
+        getColor: this._getColor.bind(this),
         pickable: Boolean(this.props.onHover),
         onHover: this.props.onHover
       })
