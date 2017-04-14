@@ -1,0 +1,61 @@
+@font-face{
+  font-family: "Futura";
+  src: url('../fonts/Futura-Medium.ttf'),
+  url('../fonts/Futura-Medium.ttf');
+}
+
+@font-face{
+	font-family: "Lato Light";
+    src: url('fonts/Lato-Light.ttf'),
+    url('../fonts/Lato-Light.eot'); /* IE */
+}
+
+@font-face{
+	font-family: "Lato Bold";
+	src: url('../fonts/Lato-Bold.ttf'),
+	url('../fonts/Lato-Bold.ttf');
+}
+
+@font-face{
+	font-family: "Lato Medium";
+	src: url('../fonts/Lato-Medium.ttf'),
+	url('../fonts/Lato-Medium.ttf');
+}
+
+@media (max-width: 800px){
+	#accordion1{
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media (max-width: 1200px) and (min-width: 801px){
+	#accordion1{
+		width: 100%;
+		margin-left: 0%;
+	}
+}
+
+@media (min-width: 1201px){
+	#accordion1{
+		width: 150%;
+		margin-left: -25%;
+	}
+}
+
+#accordion1{
+	margin-top: 7%;
+}
+
+.panel-heading{
+	background-color: rgba(255,255,255,0.5) !important;
+	border: none !important;
+	font-family: "Futura" !important;
+}
+
+.panel{
+	background-color: rgba(255,255,255,0.5) !important;
+	border: none;
+	font-family: "Lato Light" !important;
+}
