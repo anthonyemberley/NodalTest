@@ -1,21 +1,107 @@
 <!DOCTYPE html>
-<html >
-<head>
-  <meta charset="UTF-8">
-  <title>Coming Soon!</title>
-      <link rel="stylesheet" href="Stylesheets/login/css/style.css">
+<html>
+	<head>
+		<title> Nodal, Inc. </title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href = "./Stylesheets/bootstrap.css" rel = "stylesheet">
+		<link href = "./Stylesheets/main.css" rel = "stylesheet">
+		<link href = "./Stylesheets/carousel.css" rel = "stylesheet">
+		<link href = "./Stylesheets/dropdown.css" rel = "stylesheet">
+		<link href = "./Stylesheets/scroll.css" rel = "stylesheet">
+		<link href = "./Stylesheets/tabs.css" rel = "stylesheet">
+		<link href = "./Stylesheets/form.css" rel = "stylesheet">
+		<script src = "./Scripts/jquery-3.2.1.min.js"></script>
+		<script src ="./Scripts/bootstrap.js"></script>
+	</head>
 
-  
-</head>
+	<body>
+		<div class = "content">
+			<div class = "header2 transparent" style = "display: none">
+				<div class="dropdown" style="float:left;">
+  					<button class="dropbtn"><img style = "height:30px; margin: 15px; display: inline-block" src = "Assets/NodalWebLogo-01.png"></button>
+  					<div class="dropdown-content">
+    				<a href="features.html">Features</a><br>
+    				<a href="products.html">Products</a><br>
+    				<a href="pricing.html">Pricing</a><br>
+    				<a href="documentation.html">Documentation</a><br>
+    				<a href="support.html">Support</a><br>
+  				</div>
+  				
+				</div>
+				<a style = "float:right" href="login.html"><img align = "right" style = "height:30px; margin: 15px" src = "Assets/login-01.png"></a>
+			</div>
 
-<body>
-  <div class="wrapper">
-	<div class="container">
-		<h1>Coming Soon!</h1>
-	</div>
-	
-	
-</div>
+			<div class = "header transparent">
+				<table>
+					<tr class = "header-links">
+						<td class = "imlink"><a href="index.html"><img style = "height:30px; padding-top:2px; display: inline-block" src = "Assets/NodalWebLogo-01.png"></a></td>
+						<td><a href="features.html">Features</a></td>
+						<td><a href="products.html">Products</a></td>
+						<td><a href="pricing.html">Pricing</a></td>
+						<td></td>
+						<td></td>
+						<td><a href="documentation.html">Documentation</a></td>
+						<td class = "active-link"><a href="support.html">Support</a></td>
+						<td class = "imlink"><a href="login.html"><img style = "height:30px" src = "Assets/login-01.png"></a></td>
+					</tr>
+				</table>
+			</div>
 
-</body>
+			<form class="support-form" action="Scripts/submit.php" method="post">
+  				<h1 class="form-title">Questions or Comments?</h1>
+  				<br>
+  				<label>Name</label><br>
+  				<input type="text" name="first_name" required><br>
+  				<label>Organization</label><br>
+  				<input type="text" name="first_name" required><br>
+  				<label>Email</label><br>
+  				<input type="email" name="email" required><br>
+  				<label>Contact Number</label><br>
+  				<input type='tel' name="telephone"><br>
+  				<label>Message</label><br>
+  				<textarea name="message" rows = "3"></textarea><br>
+  				<!--
+  				<input class = "message" type="text" name="message" width = "80%" placeholder="Reach out" required><br>-->
+  				<button class = "productbtn" type="submit">Submit</button>
+			</form>
+
+		</div>
+
+		<div class = "footer footer-static">
+			<table>
+				<tr class = "footer-links">
+					<td class = "imlink"><a href="index.html"><img style = "height:20px" src = "Assets/NodalWebLogoGray-01.png"></td>
+					<td> </td></td>
+					<td><a href="about.html">About</a></td>
+					<td><a href="jobs.html">Jobs</a></td>
+					<td><a href="contact.html">Contact</a></td>
+					<td><a href="terms.html">Terms</a></td>
+					<td> </td>
+					<td>&copy Nodal, Inc.</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class = "footer2" style = "display: none;">
+			<br>
+			<table>
+				<tr class = "footer2-links">
+					<td><a href="about.html">About</a></td>
+					<td><a href="jobs.html">Jobs</a></td>
+					<td><a href="contact.html">Contact</a></td>
+					<td><a href="terms.html">Terms</a></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr class = "footer2-ims">
+					<td>&copy Nodal, Inc.</td>
+				</tr>
+				<tr class = "footer2-ims">
+					<td class = "imlink"><a href="index.html"><img style = "height:20px" src = "Assets/NodalWebLogoGray-01.png"></a></td>
+				</tr>
+			</table>
+			<br>
+		</div>
+	</body>
 </html>
