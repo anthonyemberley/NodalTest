@@ -1,0 +1,14 @@
+#dropdown{
+	position: fixed;
+	z-index: 9;
+    top: 5%;
+    left: 5%;
+    width: 300px;
+
+}
+
+#container{
+	margin: 0; 
+	padding: 0; 
+	overflow: hidden;
+}

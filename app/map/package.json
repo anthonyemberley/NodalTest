@@ -9,9 +9,12 @@
     "deck.gl": "^4.0.0",
     "immutable": "^3.8.1",
     "luma.gl": "^3.0.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-map-gl": "^2.0.0"
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.30.8",
+    "react-dom": "^15.5.4",
+    "react-dropdown": "^1.2.1",
+    "react-map-gl": "^2.0.0",
+    "react-select": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "buble-loader": "^0.4.0",

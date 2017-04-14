@@ -1,8 +1,11 @@
 /* global window,document */
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
+import Select from 'react-select';
+
+
 
 import {json as requestJson} from 'd3-request';
 
@@ -10,7 +13,20 @@ import {json as requestJson} from 'd3-request';
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
 const strokeWidth = 8;
 
-class Root extends Component {
+
+var optionsSelect = [
+  { value: 'safety', label: 'Safety' },
+  { value: 'scenic beauty', label: 'Scenic Beauty' },
+  { value: 'route popularity', label: 'Route Popularity' },
+  { value: 'air quality', label: 'Air Quality' },
+  { value: 'elevation change', label: 'Elevation Change' }
+];
+
+
+class Root extends PureComponent {
+
+
+  //Initialization functions
 
   constructor(props) {
     super(props);
@@ -21,7 +37,8 @@ class Root extends Component {
         height: 500
       },
       routes: null,
-      hazards: null
+      hazards: null,
+      dropdownValue: "one"
     };
 
     requestJson('./data/test-routes.json', (error, response) => {
@@ -36,11 +53,26 @@ class Root extends Component {
     });
   }
 
+
+  //MARK: Route Picking Methods
+
+  //every time the dropdown changes
+  _onDropdownChange(val) {
+    this.setState({ dropdownValue: val.value });
+    //call API to get desired routes for the given metric
+  }
+
+
+
+  //MARK: Map Methods
+
+  //Call back for when <App/> renders so we can find the size of the window to let the map take it over
   componentDidMount() {
     window.addEventListener('resize', this._resize.bind(this));
     this._resize();
   }
 
+  //Every time the window resizes this function is called so we resize the map as well
   _resize() {
     this._onChangeViewport({
       width: window.innerWidth,
@@ -48,17 +80,21 @@ class Root extends Component {
     });
   }
 
+  //Update the state every time the user changes the viewport i.e. they zoom, pan, etc.
   _onChangeViewport(viewport) {
     this.setState({
       viewport: {...this.state.viewport, ...viewport}
     });
   }
 
-  render() {
+
+  //MARK: Render methods
+
+  //Render the map and route overlays
+  _renderMap() {
     const {viewport, routes, hazards} = this.state;
 
     return (
-      <div>
         <MapGL
           {...viewport}
           mapStyle="mapbox://styles/mapbox/dark-v9"
@@ -68,15 +104,43 @@ class Root extends Component {
           <DeckGLOverlay viewport={viewport}
             strokeWidth={strokeWidth}
             routes={routes}
-            hazards={hazards} />
+            hazards={hazards} 
+            />
         </MapGL>
-        {/*} trying to add buttons on top of map
-        <div class='pill'>
-          <a href='#' class='button'>Pizza Dog</a>
-          <a href='#' class='button'>Penny Dog</a>
-          <a href='#' class='button'>Charlotte Dog</a>
+
+    );
+
+  }
+
+  //Render the dropdown menue
+  _renderDropDown() {
+    const dropdownValue = this.state.dropdownValue;
+    return (
+      <Select
+        name="preferred-route-dropdown"
+        value={dropdownValue}
+        options={optionsSelect}
+        clearable = {false}
+        placeholder={"Choose your preferred route"}
+        onChange={this._onDropdownChange.bind(this)}
+      />
+
+
+    );
+
+  }
+
+  //Render the Root component
+  render() {
+
+    return (
+      <div id="container">
+        <div id="map">
+          {this._renderMap()}
         </div>
-      */}
+        <div id="dropdown">
+          {this._renderDropDown()}
+        </div>
       </div>
     );
   }
