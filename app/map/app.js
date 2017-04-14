@@ -5,8 +5,7 @@ import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
 import Select from 'react-select';
 import {Button} from 'react-bootstrap';
-
-
+import './favicon.ico';
 
 import {json as requestJson} from 'd3-request';
 
@@ -42,8 +41,8 @@ class Root extends PureComponent {
       },
       routes: null,
       hazards: null,
-      dropdownValue: "one",
-      selectedButton: 1
+      dropdownValue: "",
+      selectedRoute: 1,
 
     };
 
@@ -72,9 +71,20 @@ class Root extends PureComponent {
   }
 
   _onRouteButtonClick(buttonNumber) {
+    
+
+    var currentData = this.state.routes;
+    currentData[5].color = [0,0,0,255];
+
+    console.log(this.state.routes)
+    console.log(currentData)
     this.setState({
-      selectedButton: buttonNumber
+      selectedRoute: buttonNumber,
+      routes: currentData
     });
+
+    //manipulate the json data colors here
+
   }
 
 
@@ -102,12 +112,21 @@ class Root extends PureComponent {
     });
   }
 
+  getColor(current){
+    console.log("test")
+    if (current == this.state.selectedRoute){
+      return [43, 191, 203, 255]; 
+    } else {
+      return [43, 191, 203, 100];
+    }
+  }
+
 
   //MARK: Render methods
 
   //Render the map and route overlays
   _renderMap() {
-    const {viewport, routes, hazards} = this.state;
+    const {viewport, routes, hazards, selectedRoute} = this.state;
 
     return (
         <MapGL
@@ -119,11 +138,14 @@ class Root extends PureComponent {
           <DeckGLOverlay viewport={viewport}
             strokeWidth={strokeWidth}
             routes={routes}
-            hazards={hazards} 
+            hazards={hazards}
+            selectedRoute={selectedRoute}
+            getColorYo={this.getColor.bind(this)} 
             />
         </MapGL>
 
     );
+
 
   }
 
@@ -148,7 +170,7 @@ class Root extends PureComponent {
 
   //render the button group
   _renderRouteButtonGroup(){
-    const selectedButton = this.state.selectedButton;
+    const selectedButton = this.state.selectedRoute;
 
     return(
 

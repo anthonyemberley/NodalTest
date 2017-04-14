@@ -3,7 +3,14 @@ import React, {Component} from 'react';
 import DeckGL, {LineLayer, ScatterplotLayer} from 'deck.gl';
 
 function getColor(d) {
-  return [43, 191, 203, 255];
+  const selectedRoute = this.props.selectedRoute;
+
+  console.log("updated");
+  if(d.current == selectedRoute){
+      return [43, 191, 203, 255];
+  }else{
+     return [43, 191, 203, 100]
+  }
 }
 
 function getSize(type) {
@@ -26,13 +33,15 @@ export default class DeckGLOverlay extends Component {
     };
   }
 
+  
+
   _initialize(gl) {
     gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE_MINUS_DST_ALPHA, gl.ONE);
     gl.blendEquation(gl.FUNC_ADD);
   }
 
   render() {
-    const {viewport, routes, hazards, strokeWidth} = this.props;
+    const {viewport, routes, hazards, strokeWidth, selectedRoute, getColorYo} = this.props;
 
     if (!routes || !hazards) {
       return null;
@@ -56,7 +65,7 @@ export default class DeckGLOverlay extends Component {
         fp64: false,
         getSourcePosition: d => d.start,
         getTargetPosition: d => d.end,
-        getColor,
+        
         pickable: Boolean(this.props.onHover),
         onHover: this.props.onHover
       })
