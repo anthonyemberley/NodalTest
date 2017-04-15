@@ -51,31 +51,31 @@
 
 			<div class="w3-container">
   				<div class="w3-row">
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Analytics');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Analytics');" id="analytics">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/analytics-01.png"></div>
     				</a>
 
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Recommendations');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Recommendations');" id="recommendations">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/recommendations-01.png"></div>
     				</a>
     
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Notifications');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Notifications');" id="notifications">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/notifications-01.png"></div>
     				</a>
 
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Cognition');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Cognition');" id="cognition">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/cognition-01.png"></div>
     				</a>
 
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Vision');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Vision');" id="vision">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/vision-01.png"></div>
     				</a>
 
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Sense');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Sense');" id="sense">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/sense-01.png"></div>
     				</a>
 
-    				<a href="javascript:void(0)" onclick="openProduct(event, 'Connect');">
+    				<a href="javascript:void(0)" onclick="openProduct(event, 'Connect');" id="connect">
       					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding"><img src = "Assets/Products/connect-01.png"></div>
     				</a>
   				</div>
@@ -486,6 +486,10 @@
   					document.getElementById(productName).style.display = "inline";
   					evt.currentTarget.firstElementChild.className += " w3-active-tab";
 				}
+
+				var tab = window.location.hash.substring(1);
+				document.getElementById(tab).click();
+
 			</script>
 		</div>
 
