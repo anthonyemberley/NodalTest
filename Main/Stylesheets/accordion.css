@@ -23,7 +23,7 @@
 }
 
 @media (max-width: 800px){
-	#accordion1{
+	#accordion1,#accordion2,#accordion3,#accordion4,#accordion5,#accordion6,#accordion7{
 		width: 80%;
 		margin-left: auto;
 		margin-right: auto;
@@ -31,27 +31,31 @@
 }
 
 @media (max-width: 1200px) and (min-width: 801px){
-	#accordion1{
+	#accordion1,#accordion2,#accordion3,#accordion4,#accordion5,#accordion6,#accordion7{
 		width: 100%;
 		margin-left: 0%;
 	}
 }
 
 @media (min-width: 1201px){
-	#accordion1{
+	#accordion1,#accordion2,#accordion3,#accordion4,#accordion5,#accordion6,#accordion7{
 		width: 150%;
 		margin-left: -25%;
 	}
 }
 
-#accordion1{
+#accordion1,#accordion2,#accordion3,#accordion4,#accordion5,#accordion6,#accordion7{
 	margin-top: 7%;
 }
 
 .panel-heading{
 	background-color: rgba(255,255,255,0.5) !important;
 	border: none !important;
-	font-family: "Futura" !important;
+	font-family: "Lato Light" !important;
+}
+
+.panel-title{
+	font-family: "Lato Medium" !important;
 }
 
 .panel{
