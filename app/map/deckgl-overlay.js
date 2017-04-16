@@ -14,6 +14,8 @@ function getSize(type) {
   return 60;
 }
 
+
+
 export default class DeckGLOverlay extends Component {
 
   static get defaultViewport() {
@@ -29,9 +31,9 @@ export default class DeckGLOverlay extends Component {
   //get color for the line layers
   _getColor(d){
     if (d.route == this.props.selectedRoute){
-      return [43, 191, 203, 255]; 
+      return [43, 191, 203, 400]; 
     } else {
-      return [43, 191, 203, 100];
+      return [43, 191, 203, 0];
     }
   }
   
@@ -42,12 +44,14 @@ export default class DeckGLOverlay extends Component {
   }
 
   render() {
-    const {viewport, routes, hazards, strokeWidth, selectedRoute} = this.props;
+    const {viewport, routes, hazards, strokeWidth, selectedRoute, dottedRoutes} = this.props;
 
     if (!routes || !hazards) {
       return null;
     }
 
+
+    //idea: do scatterplot points for dotted line - interpolate between route distances
     const layers = [
       new ScatterplotLayer({
         id: 'hazards',
@@ -56,6 +60,16 @@ export default class DeckGLOverlay extends Component {
         getPosition: d => d.coordinates,
         getColor: d => [255, 140, 0],
         getRadius: d => getSize(d.type),
+        pickable: Boolean(this.props.onHover),
+        onHover: this.props.onHover
+      }),
+      new ScatterplotLayer({
+        id: 'dotted-path',
+        data: dottedRoutes,
+        radiusScale: 20,
+        getPosition: d => d.coordinates,
+        getColor: d => [43, 191, 203, 255],
+        getRadius: d => getSize("small"),
         pickable: Boolean(this.props.onHover),
         onHover: this.props.onHover
       }),

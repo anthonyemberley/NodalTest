@@ -6,15 +6,18 @@ import DeckGLOverlay from './deckgl-overlay.js';
 import Select from 'react-select';
 import {Button} from 'react-bootstrap';
 import './favicon.ico';
-
+import RouteInterpolation from './RouteInterpolation'
 import {json as requestJson} from 'd3-request';
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
-const strokeWidth = 8;
+const strokeWidth = 12;
 const btnSelectedStyle ={backgroundColor: '#00B3C2', borderColor:'#00B3C2'}
+const kmBetweenDots = .05
 
-
+function coordinatesToString(coordinates){
+  return coordinates.join()
+}
 
 
 var optionsSelect = [
@@ -42,7 +45,9 @@ class Root extends PureComponent {
       routes: null,
       hazards: null,
       dropdownValue: null,
-      selectedRoute: 1,
+      selectedRoute: null,
+      dottedRoutes:null,
+      selectedRouteCoordinates: null
 
     };
 
@@ -59,28 +64,97 @@ class Root extends PureComponent {
   }
 
 
+
+
   //MARK: Route Picking Methods
 
   //every time the dropdown changes
   _onDropdownChange(val) {
     this.setState({ 
       dropdownValue: val.value,
-      selectedRoute: 1
     });
     //call API to get desired routes for the given metric
+    this._selectRoute(1)
+  }
+
+  _selectRoute(routeNum){
+
+
+    let selectedRouteCoordinates = [];
+    let routes = this.state.routes;
+    routes.forEach((route) => {
+      if(route.name === routeNum.toString()){
+        selectedRouteCoordinates.push(route.start);
+        selectedRouteCoordinates.push(route.end);
+      }
+
+    });
+
+    console.log(selectedRouteCoordinates)
+
+    this.setState({ 
+      selectedRoute: routeNum,
+      selectedRouteCoordinates: selectedRouteCoordinates
+    });
+
+    this._getDottedRouteFromRoute(selectedRouteCoordinates);
+
+
   }
 
   _onRouteButtonClick(buttonNumber) {
-    
+    this._selectRoute(buttonNumber)
+  }
 
-    var currentData = this.state.routes;
-    currentData[5].color = [0,0,0,255];
-    this.setState({
-      selectedRoute: buttonNumber,
-      routes: currentData
+  
+
+  //This function takes in the coordinates of the current selected route and will update which routes should be dotted
+  //which will trigger a re-render on the screen
+  _getDottedRouteFromRoute(selectedRouteCoordinates){
+    var routes = this.state.routes
+    var points = [];
+    routes.forEach((route) => {
+      let start = route.start
+      let end = route.end
+
+      var travelledDistance = 0;
+      let totalDistance = RouteInterpolation.CalculateDistanceBetweenLocations(start, end);
+
+      //convert segment coordinates to string to see if the segment is in the current route
+      let segmentString = coordinatesToString([start, end])
+      let selectedCoordinatesString = coordinatesToString(selectedRouteCoordinates)
+
+      if(!selectedCoordinatesString.includes(segmentString)){
+        var travelledDistance = 0;
+        let totalDistance = RouteInterpolation.CalculateDistanceBetweenLocations(start, end);
+
+        //interpolate between the start and end points with dots
+        while(travelledDistance + kmBetweenDots < totalDistance ){
+          let bearing = RouteInterpolation.CalculateBearing(start, end);
+          let distanceInKm = kmBetweenDots;
+          let intermediaryLocation = RouteInterpolation.CalculateDestinationLocation(start, bearing, distanceInKm);
+
+          // add intermediary location to list
+          points.push({
+            "coordinates": intermediaryLocation
+          })
+
+          // set intermediary location as new starting location
+          start = intermediaryLocation;
+          travelledDistance = travelledDistance + distanceInKm;
+        }
+
+        points.push({
+            "coordinates": start
+        })
+        points.push({
+            "coordinates": end
+        })
+      }
+      
+
     });
-
-    //manipulate the json data colors here WHY DOESN"T THIS WORKKKKK
+    this.setState({dottedRoutes: points});
 
   }
 
@@ -115,7 +189,7 @@ class Root extends PureComponent {
 
   //Render the map and route overlays
   _renderMap() {
-    const {viewport, routes, hazards, selectedRoute, dropdownValue} = this.state;
+    const {viewport, routes, hazards, selectedRoute, dropdownValue, dottedRoutes} = this.state;
 
     let map = null;
     if (dropdownValue !== null) {
@@ -130,6 +204,7 @@ class Root extends PureComponent {
             routes={routes}
             hazards={hazards}
             selectedRoute= {selectedRoute}
+            dottedRoutes={dottedRoutes}
             />
         </MapGL>
     } else {
