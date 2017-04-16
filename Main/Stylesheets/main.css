@@ -29,6 +29,7 @@
 }
 
 .content {
+	min-height: 700px;
 	height: 100%;
 	width: 100%;
 	resize: both;
@@ -36,6 +37,7 @@
 	background-image: url(../Assets/NodalWebBackgroundDesktop.svg);
 	background-repeat: no-repeat;
 	background-size: cover;
+	box-sizing: border-box;
 }
 
 .content-bottom {
@@ -198,6 +200,7 @@ td > img{
 	height: 10%;
 	background-color: rgba(0,0,0,0.0);
 	background-size: cover;
+	padding-top: 10px;
 }
 
 .header-links a{
