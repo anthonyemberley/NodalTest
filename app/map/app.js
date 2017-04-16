@@ -13,7 +13,7 @@ import {json as requestJson} from 'd3-request';
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
 const strokeWidth = 12;
 const btnSelectedStyle ={backgroundColor: '#00B3C2', borderColor:'#00B3C2'}
-const kmBetweenDots = .05
+const kmBetweenDots = .025
 
 function coordinatesToString(coordinates){
   return coordinates.join()
@@ -106,7 +106,7 @@ class Root extends PureComponent {
     this._selectRoute(buttonNumber)
   }
 
-  
+
 
   //This function takes in the coordinates of the current selected route and will update which routes should be dotted
   //which will trigger a re-render on the screen

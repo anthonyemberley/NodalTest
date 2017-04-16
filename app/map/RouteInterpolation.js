@@ -1,6 +1,5 @@
 let radius = 6371; // earth's mean radius in km
 
-	// Calculate the (initial) bearing between two points, in degrees
 // Helper function to convert degrees to radians
 function DegToRad(deg) {
     return (deg * Math.PI / 180);
@@ -12,6 +11,7 @@ function RadToDeg(rad) {
 }
 
 module.exports = {
+	// Calculate the (initial) bearing between two points, in degrees
 	CalculateBearing: function(startPoint, endPoint) {
 		    let lat1 = DegToRad(startPoint[1]);
 		    let lat2 = DegToRad(endPoint[1]);
@@ -41,7 +41,7 @@ module.exports = {
 		    return  [ RadToDeg(lon2), RadToDeg(lat2)];
 	},
 
-		// Calculate the distance between two points in km
+	 // Calculate the distance between two points in km
 	 CalculateDistanceBetweenLocations: function(startPoint, endPoint) {
 
 		    let lat1 = DegToRad(startPoint[1]);

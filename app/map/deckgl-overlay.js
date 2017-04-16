@@ -4,14 +4,18 @@ import DeckGL, {LineLayer, ScatterplotLayer} from 'deck.gl';
 
  
 
-function getSize(type) {
-  if (type.search('major') >= 0) {
-    return 100;
+function getSize(viewport) {
+  let zoom = viewport.zoom;
+  return -0.05714285714*zoom + 1.24285714286  
+}
+
+//get color for the line layers
+function getColor(d, selectedRoute){
+  if (d.route == selectedRoute){
+    return [43, 191, 203, 400]; 
+  } else {
+    return [43, 191, 203, 0];
   }
-  if (type.search('small') >= 0) {
-    return .5;
-  }
-  return 60;
 }
 
 
@@ -26,17 +30,6 @@ export default class DeckGLOverlay extends Component {
     };
   }
 
-
-
-  //get color for the line layers
-  _getColor(d){
-    if (d.route == this.props.selectedRoute){
-      return [43, 191, 203, 400]; 
-    } else {
-      return [43, 191, 203, 0];
-    }
-  }
-  
 
   _initialize(gl) {
     gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE_MINUS_DST_ALPHA, gl.ONE);
@@ -69,7 +62,10 @@ export default class DeckGLOverlay extends Component {
         radiusScale: 20,
         getPosition: d => d.coordinates,
         getColor: d => [43, 191, 203, 255],
-        getRadius: d => getSize("small"),
+        getRadius: d => getSize(viewport),
+        updateTriggers: {
+          getRadius: viewport
+        },
         pickable: Boolean(this.props.onHover),
         onHover: this.props.onHover
       }),
@@ -83,7 +79,7 @@ export default class DeckGLOverlay extends Component {
         updateTriggers:{
           getColor: selectedRoute
         },
-        getColor: this._getColor.bind(this),
+        getColor: d => getColor(d, selectedRoute),
         pickable: Boolean(this.props.onHover),
         onHover: this.props.onHover
       })
