@@ -26,9 +26,9 @@
     font-size: 16px;
     background-color: white;
     min-width: 140px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 0px;
-    padding: 0px 60px;
+    padding: 4px 20px;
     z-index: 1;
 }
 
@@ -63,5 +63,5 @@
 
 #logo {
     border: 2px solid #FFFFFF;
-    border-radius: 15px;
+    border-radius: 5px;
 }

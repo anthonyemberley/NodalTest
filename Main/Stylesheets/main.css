@@ -297,6 +297,7 @@ td > img{
 .footer2{
 	display: none;
 	height: 10%;
+	width: 100%;
 	background-color: white;
 	background-size: cover;
 }
@@ -336,6 +337,18 @@ td > img{
     .smalltable img {
     	width: 70%;
     }
+}
+
+@media screen and (max-width: 500px) and (max-height: 800px) {
+	h1{
+		font-size: 24px !important;
+	}
+}
+
+@media screen and (max-width: 800px) and (max-height: 600px) {
+	h1{
+		font-size: 24px !important;
+	}
 }
 
 @media screen and (max-width: 1024px) {
