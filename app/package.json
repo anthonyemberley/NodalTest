@@ -10,6 +10,7 @@
     "mapbox-gl": "^0.35.0",
     "mapbox-gl-react": "^0.1.6",
     "react": "^15.5.3",
+    "react-bootstrap": "^0.30.10",
     "react-dom": "^15.5.3",
     "react-map-gl": "^1.8.2",
     "react-redux": "^5.0.4",

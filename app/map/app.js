@@ -8,6 +8,7 @@ import {Button, FormControl, FormGroup, InputGroup} from 'react-bootstrap';
 import './favicon.ico';
 import RouteInterpolation from './RouteInterpolation'
 import {json as requestJson} from 'd3-request';
+import NodalNav from './nodalnavbar.js'
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
@@ -295,6 +296,7 @@ class Root extends PureComponent {
             />            
             <InputGroup.Button>
               <Button
+                type="submit"
                 disabled={!hasUserInput}
                 onClick= {this.goButtonClicked}>Go</Button>
             </InputGroup.Button>
@@ -358,6 +360,7 @@ class Root extends PureComponent {
 
     return (
       <div id="container">
+        {/* <NodalNav /> */}
         <div id="map">
           {this._renderMap()}
         </div>
