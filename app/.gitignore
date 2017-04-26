@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/map/node_modules
 
 # testing
 /coverage

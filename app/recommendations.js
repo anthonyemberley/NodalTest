@@ -5,10 +5,8 @@ import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
 import Select from 'react-select';
 import {Button, FormControl, FormGroup, InputGroup} from 'react-bootstrap';
-import './favicon.ico';
 import RouteInterpolation from './RouteInterpolation'
 import {json as requestJson} from 'd3-request';
-import NodalNav from './nodalnavbar.js'
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
@@ -30,7 +28,7 @@ var optionsSelect = [
 ];
 
 
-class Root extends PureComponent {
+export default class Recommendations extends PureComponent {
 
 
   //Initialization functions
@@ -376,5 +374,3 @@ class Root extends PureComponent {
     );
   }
 }
-
-render(<Root />, document.body.appendChild(document.createElement('div')));
