@@ -29,21 +29,12 @@ class Root extends PureComponent {
   render() {
 
     return (
-      
-      /*<div id="container">
-        <Router history= {hashHistory}>
-          <div id="navbar">
-            <NodalNav />
-          </div>
-          <Switch>
-            <Route component={Recommendations} path="/recommendations" />
-          </Switch>
-        </Router>
-      </div>*/
 
       <Router>
         <div>
-          <NodalNav />
+          <div id="navbar">
+            <NodalNav />
+          </div>
           <Route 
             exact path='/' 
             component={Home}>
