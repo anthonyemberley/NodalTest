@@ -47,7 +47,7 @@
 }
 
 .info li{
-	font-family: "Lato Light";
+	font-family: "Lato Light" "Arial" "Sans-Serif";
 	padding-left: 1em;
   	text-indent: 1em;
 }
@@ -57,12 +57,12 @@
 }
 
 .info h2{
-	font-family: "Lato Medium";
+	font-family: "Lato Medium" "Arial" "Sans-Serif";
 	font-size: 24px;
 }
 
 .info p{
-	font-family: "Lato Light";
+	font-family: "Lato Light" "Arial" "Sans-Serif";
 }
 
 .product-info{

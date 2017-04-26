@@ -24,27 +24,44 @@
     color: white;
     text-align: left;
     font-size: 16px;
-    background-color: rgba(0,0,0,0);
-    min-width: 160px;
-    padding: 0px 60px;
+    background-color: white;
+    min-width: 140px;
+    margin-left: 5px;
+    margin-top: 0px;
+    padding: 4px 20px;
     z-index: 1;
 }
 
 .dropdown-content a{
-    color: white;
+    color: #26BFCC
 }
 
 .dropdown-content a:hover{
-    color: white;
+    color: #26BFCC;
     font-family: "Futura Bold";
     text-decoration: none;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content{
     display: block;
 }
 
 .dropbtn {
     background-color: Transparent;
     border: none;
+}
+
+.dropdown:hover > #arrow{
+    display: block;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    margin-left: 30px;
+}
+
+#logo {
+    border: 2px solid #FFFFFF;
+    border-radius: 5px;
 }
