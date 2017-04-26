@@ -24,10 +24,13 @@ class Root extends PureComponent {
 
     return (
       <div id="container">
-        {/* <NodalNav /> */}
+        <div id="navbar">
+          <NodalNav />
+        </div>
         <div id="map">
           <Recommendations />
         </div>
+          
       </div>
     );
   }
