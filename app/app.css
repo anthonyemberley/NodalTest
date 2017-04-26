@@ -1,7 +1,7 @@
 #navigation-group{
 	position: fixed;
 	z-index: 9;
-    top: 5%;
+    top: 69px;
     left: 5%;
     width: 300px;
 }
@@ -14,7 +14,6 @@
 #container{
 	margin: 0; 
 	padding: 0; 
-	overflow: hidden;
 }
 
 .route-button{
@@ -26,4 +25,11 @@
 .route-button-group{
 	margin-top: 25px;
 	white-space: pre;
+}
+
+
+
+#navbar{
+	margin-bottom: 0px;
+	height: 52px;
 }
