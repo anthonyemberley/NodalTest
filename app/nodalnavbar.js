@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
 import {Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react-bootstrap'
- 
+import { Link } from 'react-router';
+
 
 
 
@@ -23,7 +24,9 @@ export default class NodalNav extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="#">Recommendations</NavItem>
+            <NavItem eventKey={1} >
+              <Link to="/Recommendations">Recommendations</Link>
+            </NavItem>
             <NavDropdown eventKey={2} title="Scores" id="basic-nav-dropdown">
               <MenuItem eventKey={2.1}>Crime Clustering</MenuItem>
               <MenuItem eventKey={2.2}>Route Annotations</MenuItem>
