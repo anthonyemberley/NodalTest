@@ -44,29 +44,3 @@
 
 
 .w3-padding{padding:8px 16px!important}
-
-
-.demo-button{
-  height: 30px;
-  width: 100px;
-  color: white;
-  font-family: "Futura";
-  font-size: 15px;
-  border: 3px solid #FFFFFF;
-  transition-duration: 0.25s;
-  padding: 1px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 0 auto;
-  margin-top: 20px;
-  display: block;
-  text-align: center;
-}
-
-.demo-button:hover {
-  background: #FFFFFF;
-  color: #26BFCC;
-  font-family: "Futura";
-  text-decoration: none;
-  border: 3px solid #FFFFFF;
-}

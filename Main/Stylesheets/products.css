@@ -1,0 +1,66 @@
+
+.demo-button::after {
+  margin-top: 5px;
+}
+
+.demo-button{
+  height: 30px;
+  width: 100px;
+  color: white;
+  font-family: "Futura";
+  font-size: 15px;
+  border: 3px solid #FFFFFF;
+  transition-duration: 0.25s;
+  padding: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+.demo-button:hover {
+  background: #FFFFFF;
+  color: #26BFCC;
+  font-family: "Futura";
+  text-decoration: none;
+  border: 3px solid #FFFFFF;
+}
+
+#products-content {
+  overflow: auto;
+  min-height: 450px;
+  width: 100%;
+  resize: both;
+  display: block;
+  background-image: url(../Assets/NodalWebBackgroundDesktop.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 700px) {
+    #horizontal {
+        display: none !important;
+    }
+
+    #vertical {
+        display: block !important;
+    }
+
+    .w3-container {
+        width: 100% !important;
+    }
+}
+
+
+@media screen and (min-width: 700px) {
+    #horizontal {
+        display: block !important;
+    }
+
+    #vertical {
+        display: none !important;
+    }
+}

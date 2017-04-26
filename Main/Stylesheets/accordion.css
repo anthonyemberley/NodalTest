@@ -22,7 +22,15 @@
 	url('../fonts/Lato-Medium.ttf');
 }
 
-@media (max-width: 800px){
+@media (max-width: 650px) {
+	#accordion1,#accordion2,#accordion3,#accordion4,#accordion5,#accordion6,#accordion7{
+		width: 100%;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+}
+
+@media (max-width: 800px) and (min-width: 651px) {
 	#accordion1,#accordion2,#accordion3,#accordion4,#accordion5,#accordion6,#accordion7{
 		width: 80%;
 		margin-left: auto;
@@ -48,18 +56,40 @@
 	margin-top: 7%;
 }
 
+#inner-accordion1,#inner-accordion2,#inner-accordion3,#inner-accordion4,#inner-accordion5,#inner-accordion6,#inner-accordion7{
+	padding-top: 10px;
+}
+
 .panel-heading{
 	background-color: rgba(255,255,255,0.5) !important;
 	border: none !important;
 	font-family: "Lato Light" "Arial" "Sans-Serif" !important;
 }
 
+#outer-panel-heading {
+	background-color: rgba(255,255,255,0.5) !important;
+	border: none !important;
+	font-family: "Lato Light" "Arial" "Sans-Serif" !important;
+	padding: 5px;
+}
+
 .panel-title{
 	font-family: "Lato Medium" "Arial" "Sans-Serif" !important;
+}
+
+#outer-panel-title{
+	font-family: "Lato Medium" "Arial" "Sans-Serif" !important;
+	letter-spacing: 5px;
+	word-wrap: break-word;
 }
 
 .panel{
 	background-color: rgba(255,255,255,0.5) !important;
 	border: none;
 	font-family: "Lato Light" "Arial" "Sans-Serif" !important;
+}
+
+h2 {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
