@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 
 import {Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react-bootstrap'
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 
 
 export default class NodalNav extends Component {
 
+  handleSelect(eventKey){
+
+  }
 
   render() {
 
@@ -19,7 +22,7 @@ export default class NodalNav extends Component {
         <Navbar  onSelect={this.handleSelect}>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Nodal</a>
+              <Link to="/">Nodal</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

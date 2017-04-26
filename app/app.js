@@ -42,8 +42,17 @@ class Root extends PureComponent {
       </div>*/
 
       <Router>
-        <Route path='/' component={Recommendations}>
-        </Route>
+        <div>
+          <NodalNav />
+          <Route 
+            exact path='/' 
+            component={Home}>
+          </Route>
+          <Route 
+            path='/Recommendations' 
+            component={Recommendations}>
+          </Route>
+        </div>
       </Router>
 
     );
@@ -51,11 +60,11 @@ class Root extends PureComponent {
 }
 
 
-const Container = (props) => (<div>
-  <NodalNav />
-  {props.children}
-</div>)
-
+const Home = () => (
+  <div>
+    <h2>Welcome to Nodal, select a demo from the Navbar above</h2>
+  </div>
+)
 
 
 
