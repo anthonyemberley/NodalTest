@@ -4,8 +4,7 @@ import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
 import Select from 'react-select';
-import {Button} from 'react-bootstrap';
-import './favicon.ico';
+import {Button, FormControl, FormGroup, InputGroup} from 'react-bootstrap';
 import RouteInterpolation from './RouteInterpolation'
 import {json as requestJson} from 'd3-request';
 
@@ -29,7 +28,7 @@ var optionsSelect = [
 ];
 
 
-class Root extends PureComponent {
+export default class Recommendations extends PureComponent {
 
 
   //Initialization functions
@@ -47,7 +46,10 @@ class Root extends PureComponent {
       dropdownValue: null,
       selectedRoute: null,
       dottedRoutes:null,
-      selectedRouteCoordinates: null
+      selectedRouteCoordinates: null,
+      hasUserInput: false,
+      destinationValue: "",
+      startValue: ""
 
     };
 
@@ -61,6 +63,31 @@ class Root extends PureComponent {
         this.setState({hazards: response});
       }
     });
+  }
+
+
+  //MARK: Start and Destination helper methods
+  goButtonClicked(){
+    console.log("call API!!")
+    //Call API with default preferred route if no preferred route chosen
+
+  }
+
+  handleTextInputChange(e){
+    if(e.target.id == "start"){
+      this.setState({ startValue: e.target.value },this.getValidationState);
+    }else if(e.target.id == "destination"){
+      this.setState({destinationValue: e.target.value},  this.getValidationState);
+    }
+
+  }
+
+  getValidationState(){
+    if(this.state.startValue.length > 0 && this.state.destinationValue.length > 0){
+      this.setState({hasUserInput: true})
+    }else{
+      this.setState({hasUserInput: false})
+    }
   }
 
 
@@ -90,7 +117,6 @@ class Root extends PureComponent {
 
     });
 
-    console.log(selectedRouteCoordinates)
 
     this.setState({ 
       selectedRoute: routeNum,
@@ -241,6 +267,43 @@ class Root extends PureComponent {
 
   }
 
+  //render search buttons
+
+  _renderSearchButtons(){
+
+    const hasUserInput = this.state.hasUserInput
+    const startValue = this.state.startValue
+    const destinationValue = this.state.destinationValue
+    return (
+       <div>
+        <FormGroup>
+          <FormControl 
+            id="start" 
+            type="text" 
+            placeholder="Starting Point"
+            onChange={this.handleTextInputChange.bind(this)}
+            value= {startValue}
+          />
+          <InputGroup>
+            <FormControl 
+              id="destination" 
+              type="text" 
+              placeholder="Destination"
+              onChange={this.handleTextInputChange.bind(this)}
+              value= {destinationValue}
+            />            
+            <InputGroup.Button>
+              <Button
+                type="submit"
+                disabled={!hasUserInput}
+                onClick= {this.goButtonClicked}>Go</Button>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+       </div>
+    );
+  }
+
 
   //render the button group
   _renderRouteButtonGroup(){
@@ -295,12 +358,15 @@ class Root extends PureComponent {
 
     return (
       <div id="container">
+        {/* <NodalNav /> */}
         <div id="map">
           {this._renderMap()}
         </div>
         <div id="navigation-group">
           <div id="dropdown">
+            {this._renderSearchButtons()}
             {this._renderDropDown()}
+            }
           </div>
           {this._renderRouteButtonGroup()}
         </div>
@@ -308,5 +374,3 @@ class Root extends PureComponent {
     );
   }
 }
-
-render(<Root />, document.body.appendChild(document.createElement('div')));
