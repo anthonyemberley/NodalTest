@@ -1,13 +1,15 @@
 /* global window,document */
 import React, {Component, PureComponent} from 'react';
 import {render} from 'react-dom';
-import NodalNav from './nodalnavbar.js'
+import NodalNav from './nodal-navbar.js'
 import Recommendations from './recommendations.js'
+import Notifications from './notifications.js'
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
+
 
 
 
@@ -35,14 +37,20 @@ class Root extends PureComponent {
           <div id="navbar">
             <NodalNav />
           </div>
-          <Route 
-            exact path='/' 
-            component={Home}>
-          </Route>
-          <Route 
-            path='/Recommendations' 
-            component={Recommendations}>
-          </Route>
+          <div id="container">
+            <Route 
+              exact path='/' 
+              component={Home}>
+            </Route>
+            <Route 
+              path='/Recommendations' 
+              component={Recommendations}>
+            </Route>
+            <Route 
+              path='/Notifications' 
+              component={Notifications}>
+            </Route>
+          </div>
         </div>
       </Router>
 

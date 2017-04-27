@@ -26,7 +26,7 @@ export default class NodalNav extends Component {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Nav>
+          <Nav pullLeft>
             <NavItem eventKey={1} >
               <Link to="/Recommendations">Recommendations</Link>
             </NavItem>
@@ -36,6 +36,9 @@ export default class NodalNav extends Component {
               <MenuItem eventKey={2.3}>Heatmaps</MenuItem>
               <MenuItem eventKey={3.3}>Device Locations</MenuItem>
             </NavDropdown>
+            <NavItem eventKey={4} >
+              <Link to="/Notifications">Notifications</Link>
+            </NavItem>
           </Nav>
           
           <Nav pullRight>
