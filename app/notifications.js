@@ -14,6 +14,7 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGM
 const strokeWidth = 12;
 const btnSelectedStyle ={backgroundColor: '#00B3C2', borderColor:'#00B3C2'}
 const kmBetweenDots = .025
+const yMargin = 25
 
 function coordinatesToString(coordinates){
   return coordinates.join()
@@ -51,8 +52,8 @@ export default class Notifications extends PureComponent {
       hasUserInput: false,
       destinationValue: "",
       startValue: "",
-      currentX: null,
-      currentY: null,
+      x: null,
+      y: null,
       hoveredNotification: null
 
     };
@@ -210,7 +211,7 @@ export default class Notifications extends PureComponent {
 
   //when the user hovers over a notification
   _onHoverNotification({x, y, object}) {
-
+    console.log(x)
     this.setState({x, y, hoveredNotification: object});
   }
 
@@ -256,11 +257,11 @@ export default class Notifications extends PureComponent {
   //Render the tip for when someone hovers over a point
 
   _renderToolTip(){
-    const {currentX, currentY, hoveredNotification} = this.state;
-    console.log(hoveredNotification)
+    const {x, y, hoveredNotification} = this.state;
+    console.log(x)
+    console.log(y)
     return hoveredNotification && (
-      <div className="tooltip2" >
-      
+      <div className="nodal-tooltip" style={{left: x, top: y + yMargin}} >
         {hoveredNotification.message}
       </div>
     );

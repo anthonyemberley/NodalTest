@@ -34,34 +34,15 @@
 	height: 52px;
 }
 
-.tooltip2 {
-	top: 50px;
-	left: 100px;
-	z-index: 1000;
-    padding: 4px 12px;
-    max-width: 240px;
-    max-height: 320px;
-    box-sizing: content-box;
-    overflow-y: hidden;
-
-    h5 {
-      font-size: 1em;
-    }
-    p {
-      display: none;
-      text-indent: 4px;
-    }
-  }
-  .tooltip2.interactive {
-    border: solid 4px transparent;
-    margin: -4px;
-    background: white;
-    color: black;
-    pointer-events: all;
-    width: 240px;
-    overflow-y: auto;
-
-    p {
-      display: block;
-    }
-  }
+.nodal-tooltip{
+	position: absolute;
+    padding: 4px;
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    max-width: 300px;
+    font-size: 10px;
+    z-index: 9;
+    pointer-events: none;
+    box-sizing: border-box;
+    display: block;
+}
