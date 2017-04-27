@@ -2,10 +2,11 @@
 import React, {Component, PureComponent} from 'react';
 import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
-import DeckGLOverlay from './deckgl-overlay.js';
+import DeckGLOverlay from '../overlays/deckgl-overlay.js';
+import Select from 'react-select';
 import {Button, FormControl, FormGroup, InputGroup} from 'react-bootstrap';
 import {json as requestJson} from 'd3-request';
-import RouteAnnotationsOverlay from './route-annotations-overlay.js'
+import NotificationsOverlay from '../overlays/notifications-overlay.js'
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
@@ -14,7 +15,7 @@ const yMargin = 25
 const defaultZoom = 13
 
 
-export default class RouteAnnotations extends PureComponent {
+export default class Notifications extends PureComponent {
 
 
   //Initialization functions
@@ -31,14 +32,13 @@ export default class RouteAnnotations extends PureComponent {
       startValue: "",
       x: null,
       y: null,
-      hoveredNotification: null,
-      routes: null
+      hoveredNotification: null
 
     };
 
-    requestJson('./data/test-route-annotations.json', (error, response) => {
+    requestJson('../data/test-notifications.json', (error, response) => {
       if (!error) {
-        this.setState({routes: response});
+        this.setState({notifications: response});
       }
     });
   }
@@ -51,11 +51,11 @@ export default class RouteAnnotations extends PureComponent {
     let userInput = this.state.startValue;
     let coords = userInput.split(",")
 
-    // this.setState({ viewport: {...this.state.viewport,
-    //   latitude: parseInt(coords[0]),
-    //   longitude: parseInt(coords[1]),
-    //   zoom: defaultZoom,
-    // }});
+    this.setState({ viewport: {...this.state.viewport,
+      latitude: parseInt(coords[0]),
+      longitude: parseInt(coords[1]),
+      zoom: defaultZoom,
+    }});
 
   }
 
@@ -113,7 +113,8 @@ export default class RouteAnnotations extends PureComponent {
 
   //Render the map and route overlays
   _renderMap() {
-    const {viewport, routes, hazards, selectedRoute, dropdownValue, dottedRoutes} = this.state;
+    const {viewport, routes, hazards, selectedRoute, dropdownValue, dottedRoutes, notifications} = this.state;
+
     let map = null;
     if (dropdownValue !== null) {
       map = <MapGL
@@ -122,10 +123,9 @@ export default class RouteAnnotations extends PureComponent {
           perspectiveEnabled={true}
           onChangeViewport={this._onChangeViewport.bind(this)}
           mapboxApiAccessToken={MAPBOX_TOKEN}>
-          <RouteAnnotationsOverlay viewport={viewport}
-            routes= {routes}
+          <NotificationsOverlay viewport={viewport}
+            notifications= {notifications}
             onHover= {this._onHoverNotification.bind(this)}
-            strokeWidth= {strokeWidth}
             />
         </MapGL>
     } else {
@@ -135,10 +135,9 @@ export default class RouteAnnotations extends PureComponent {
           perspectiveEnabled={true}
           onChangeViewport={this._onChangeViewport.bind(this)}
           mapboxApiAccessToken={MAPBOX_TOKEN}>
-          <RouteAnnotationsOverlay viewport={viewport}
-            routes= {routes}
+          <NotificationsOverlay viewport={viewport}
+            notifications= {notifications}
             onHover= {this._onHoverNotification.bind(this)}
-            strokeWidth= {strokeWidth}
             />
         </MapGL>
     }
@@ -173,7 +172,7 @@ export default class RouteAnnotations extends PureComponent {
             <FormControl 
               id="start" 
               type="text" 
-              placeholder="Annotation Address"
+              placeholder="Notification Address"
               onChange={this.handleTextInputChange.bind(this)}
               value= {startValue}
             />            

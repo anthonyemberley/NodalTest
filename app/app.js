@@ -1,10 +1,10 @@
 /* global window,document */
 import React, {Component, PureComponent} from 'react';
 import {render} from 'react-dom';
-import NodalNav from './nodal-navbar.js'
-import Recommendations from './recommendations.js'
-import Notifications from './notifications.js'
-import RouteAnnotations from './route-annotations.js'
+import NodalNav from './components/nodal-navbar.js'
+import Recommendations from './components/recommendations.js'
+import Notifications from './components/notifications.js'
+import RouteAnnotations from './components/route-annotations.js'
 import {
   BrowserRouter as Router,
   Route,

@@ -2,12 +2,10 @@
 import React, {Component, PureComponent} from 'react';
 import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
-import DeckGLOverlay from './deckgl-overlay.js';
-import Select from 'react-select';
+import DeckGLOverlay from '../overlays/deckgl-overlay.js';
 import {Button, FormControl, FormGroup, InputGroup} from 'react-bootstrap';
-import RouteInterpolation from './RouteInterpolation'
 import {json as requestJson} from 'd3-request';
-import NotificationsOverlay from './notifications-overlay.js'
+import RouteAnnotationsOverlay from '../overlays/route-annotations-overlay.js'
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
@@ -16,7 +14,7 @@ const yMargin = 25
 const defaultZoom = 13
 
 
-export default class Notifications extends PureComponent {
+export default class RouteAnnotations extends PureComponent {
 
 
   //Initialization functions
@@ -33,13 +31,14 @@ export default class Notifications extends PureComponent {
       startValue: "",
       x: null,
       y: null,
-      hoveredNotification: null
+      hoveredNotification: null,
+      routes: null
 
     };
 
-    requestJson('./data/test-notifications.json', (error, response) => {
+    requestJson('../data/test-route-annotations.json', (error, response) => {
       if (!error) {
-        this.setState({notifications: response});
+        this.setState({routes: response});
       }
     });
   }
@@ -52,11 +51,11 @@ export default class Notifications extends PureComponent {
     let userInput = this.state.startValue;
     let coords = userInput.split(",")
 
-    this.setState({ viewport: {...this.state.viewport,
-      latitude: parseInt(coords[0]),
-      longitude: parseInt(coords[1]),
-      zoom: defaultZoom,
-    }});
+    // this.setState({ viewport: {...this.state.viewport,
+    //   latitude: parseInt(coords[0]),
+    //   longitude: parseInt(coords[1]),
+    //   zoom: defaultZoom,
+    // }});
 
   }
 
@@ -114,8 +113,7 @@ export default class Notifications extends PureComponent {
 
   //Render the map and route overlays
   _renderMap() {
-    const {viewport, routes, hazards, selectedRoute, dropdownValue, dottedRoutes, notifications} = this.state;
-
+    const {viewport, routes, hazards, selectedRoute, dropdownValue, dottedRoutes} = this.state;
     let map = null;
     if (dropdownValue !== null) {
       map = <MapGL
@@ -124,9 +122,10 @@ export default class Notifications extends PureComponent {
           perspectiveEnabled={true}
           onChangeViewport={this._onChangeViewport.bind(this)}
           mapboxApiAccessToken={MAPBOX_TOKEN}>
-          <NotificationsOverlay viewport={viewport}
-            notifications= {notifications}
+          <RouteAnnotationsOverlay viewport={viewport}
+            routes= {routes}
             onHover= {this._onHoverNotification.bind(this)}
+            strokeWidth= {strokeWidth}
             />
         </MapGL>
     } else {
@@ -136,9 +135,10 @@ export default class Notifications extends PureComponent {
           perspectiveEnabled={true}
           onChangeViewport={this._onChangeViewport.bind(this)}
           mapboxApiAccessToken={MAPBOX_TOKEN}>
-          <NotificationsOverlay viewport={viewport}
-            notifications= {notifications}
+          <RouteAnnotationsOverlay viewport={viewport}
+            routes= {routes}
             onHover= {this._onHoverNotification.bind(this)}
+            strokeWidth= {strokeWidth}
             />
         </MapGL>
     }
@@ -173,7 +173,7 @@ export default class Notifications extends PureComponent {
             <FormControl 
               id="start" 
               type="text" 
-              placeholder="Notification Address"
+              placeholder="Annotation Address"
               onChange={this.handleTextInputChange.bind(this)}
               value= {startValue}
             />            

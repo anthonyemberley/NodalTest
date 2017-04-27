@@ -2,10 +2,10 @@
 import React, {Component, PureComponent} from 'react';
 import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
-import DeckGLOverlay from './deckgl-overlay.js';
+import DeckGLOverlay from '../overlays/deckgl-overlay.js';
 import Select from 'react-select';
 import {Button, FormControl, FormGroup, InputGroup} from 'react-bootstrap';
-import RouteInterpolation from './RouteInterpolation'
+import RouteInterpolation from '../helpers/RouteInterpolation'
 import {json as requestJson} from 'd3-request';
 
 // Set your mapbox token here
@@ -53,12 +53,12 @@ export default class Recommendations extends PureComponent {
 
     };
 
-    requestJson('./data/test-routes.json', (error, response) => {
+    requestJson('../data/test-routes.json', (error, response) => {
       if (!error) {
         this.setState({routes: response});
       }
     });
-    requestJson('./data/hazards.json', (error, response) => {
+    requestJson('../data/hazards.json', (error, response) => {
       if (!error) {
         this.setState({hazards: response});
       }
