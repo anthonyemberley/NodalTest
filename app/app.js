@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import NodalNav from './nodal-navbar.js'
 import Recommendations from './recommendations.js'
 import Notifications from './notifications.js'
+import RouteAnnotations from './route-annotations.js'
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +22,6 @@ class Root extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-
 
     };
 
@@ -49,6 +49,10 @@ class Root extends PureComponent {
             <Route 
               path='/Notifications' 
               component={Notifications}>
+            </Route>
+            <Route 
+              path='/RouteAnnotations' 
+              component={RouteAnnotations}>
             </Route>
           </div>
         </div>
