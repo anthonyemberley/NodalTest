@@ -324,6 +324,10 @@ td > img{
 	color: #58595B;
 }
 
+.content {
+	min-height: 750px !important;
+}
+
 @media screen and (max-width: 700px) {
     .bigtable {
     	display: none !important;
