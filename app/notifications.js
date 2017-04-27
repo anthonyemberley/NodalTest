@@ -12,22 +12,8 @@ import NotificationsOverlay from './notifications-overlay.js'
 // Set your mapbox token here
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYW50aG9ueWVtYmVybGV5IiwiYSI6ImNqMWJvNzMwazBhbGMyd3Fxbmlhb3VycGgifQ.997zUWJQeWgUY5ERLL3GWg"; // eslint-disable-line
 const strokeWidth = 12;
-const btnSelectedStyle ={backgroundColor: '#00B3C2', borderColor:'#00B3C2'}
-const kmBetweenDots = .025
 const yMargin = 25
-
-function coordinatesToString(coordinates){
-  return coordinates.join()
-}
-
-
-var optionsSelect = [
-  { value: 'safety', label: 'Safety' },
-  { value: 'scenic beauty', label: 'Scenic Beauty' },
-  { value: 'route popularity', label: 'Route Popularity' },
-  { value: 'air quality', label: 'Air Quality' },
-  { value: 'elevation change', label: 'Elevation Change' }
-];
+const defaultZoom = 13
 
 
 export default class Notifications extends PureComponent {
@@ -43,14 +29,7 @@ export default class Notifications extends PureComponent {
         width: 500,
         height: 500
       },
-      routes: null,
-      hazards: null,
-      dropdownValue: null,
-      selectedRoute: null,
-      dottedRoutes:null,
-      selectedRouteCoordinates: null,
       hasUserInput: false,
-      destinationValue: "",
       startValue: "",
       x: null,
       y: null,
@@ -66,24 +45,30 @@ export default class Notifications extends PureComponent {
   }
 
 
-  //MARK: Start and Destination helper methods
+  //MARK: Start and Destination helper methods // currently zooms to coordinates location
   goButtonClicked(){
     console.log("call API!!")
     //Call API with default preferred route if no preferred route chosen
+    let userInput = this.state.startValue;
+    let coords = userInput.split(",")
+
+    this.setState({ viewport: {...this.state.viewport,
+      latitude: parseInt(coords[0]),
+      longitude: parseInt(coords[1]),
+      zoom: defaultZoom,
+    }});
 
   }
 
   handleTextInputChange(e){
     if(e.target.id == "start"){
       this.setState({ startValue: e.target.value },this.getValidationState);
-    }else if(e.target.id == "destination"){
-      this.setState({destinationValue: e.target.value},  this.getValidationState);
     }
 
   }
 
   getValidationState(){
-    if(this.state.startValue.length > 0 && this.state.destinationValue.length > 0){
+    if(this.state.startValue.length > 0){
       this.setState({hasUserInput: true})
     }else{
       this.setState({hasUserInput: false})
@@ -93,98 +78,7 @@ export default class Notifications extends PureComponent {
 
 
 
-  //MARK: Route Picking Methods
-
-  //every time the dropdown changes
-  _onDropdownChange(val) {
-    this.setState({ 
-      dropdownValue: val.value,
-    });
-    //call API to get desired routes for the given metric
-    this._selectRoute(1)
-  }
-
-  _selectRoute(routeNum){
-
-
-    let selectedRouteCoordinates = [];
-    let routes = this.state.routes;
-    routes.forEach((route) => {
-      if(route.name === routeNum.toString()){
-        selectedRouteCoordinates.push(route.start);
-        selectedRouteCoordinates.push(route.end);
-      }
-
-    });
-
-
-    this.setState({ 
-      selectedRoute: routeNum,
-      selectedRouteCoordinates: selectedRouteCoordinates
-    });
-
-    this._getDottedRouteFromRoute(selectedRouteCoordinates);
-
-
-  }
-
-  _onRouteButtonClick(buttonNumber) {
-    this._selectRoute(buttonNumber)
-  }
-
-
-
-  //This function takes in the coordinates of the current selected route and will update which routes should be dotted
-  //which will trigger a re-render on the screen
-  _getDottedRouteFromRoute(selectedRouteCoordinates){
-    var routes = this.state.routes
-    var points = [];
-    routes.forEach((route) => {
-      let start = route.start
-      let end = route.end
-
-      var travelledDistance = 0;
-      let totalDistance = RouteInterpolation.CalculateDistanceBetweenLocations(start, end);
-
-      //convert segment coordinates to string to see if the segment is in the current route
-      let segmentString = coordinatesToString([start, end])
-      let selectedCoordinatesString = coordinatesToString(selectedRouteCoordinates)
-
-      if(!selectedCoordinatesString.includes(segmentString)){
-        var travelledDistance = 0;
-        let totalDistance = RouteInterpolation.CalculateDistanceBetweenLocations(start, end);
-
-        //interpolate between the start and end points with dots
-        while(travelledDistance + kmBetweenDots < totalDistance ){
-          let bearing = RouteInterpolation.CalculateBearing(start, end);
-          let distanceInKm = kmBetweenDots;
-          let intermediaryLocation = RouteInterpolation.CalculateDestinationLocation(start, bearing, distanceInKm);
-
-          // add intermediary location to list
-          points.push({
-            "coordinates": intermediaryLocation
-          })
-
-          // set intermediary location as new starting location
-          start = intermediaryLocation;
-          travelledDistance = travelledDistance + distanceInKm;
-        }
-
-        points.push({
-            "coordinates": start
-        })
-        points.push({
-            "coordinates": end
-        })
-      }
-      
-
-    });
-    this.setState({dottedRoutes: points});
-
-  }
-
-
+  
 
   //MARK: Map Methods
 
@@ -211,7 +105,6 @@ export default class Notifications extends PureComponent {
 
   //when the user hovers over a notification
   _onHoverNotification({x, y, object}) {
-    console.log(x)
     this.setState({x, y, hoveredNotification: object});
   }
 
@@ -258,8 +151,6 @@ export default class Notifications extends PureComponent {
 
   _renderToolTip(){
     const {x, y, hoveredNotification} = this.state;
-    console.log(x)
-    console.log(y)
     return hoveredNotification && (
       <div className="nodal-tooltip" style={{left: x, top: y + yMargin}} >
         {hoveredNotification.message}
@@ -269,54 +160,28 @@ export default class Notifications extends PureComponent {
   }
 
 
-  //Render the dropdown menue
-  _renderDropDown() {
-    const dropdownValue = this.state.dropdownValue;
-    return (
-      <Select
-        name="preferred-route-dropdown"
-        value={dropdownValue}
-        options={optionsSelect}
-        clearable = {false}
-        placeholder={"Choose your preferred route"}
-        onChange={this._onDropdownChange.bind(this)}
-      />
-
-
-    );
-
-  }
-
   //render search buttons
 
   _renderSearchButtons(){
 
     const hasUserInput = this.state.hasUserInput
     const startValue = this.state.startValue
-    const destinationValue = this.state.destinationValue
     return (
        <div>
         <FormGroup>
-          <FormControl 
-            id="start" 
-            type="text" 
-            placeholder="Starting Point"
-            onChange={this.handleTextInputChange.bind(this)}
-            value= {startValue}
-          />
           <InputGroup>
             <FormControl 
-              id="destination" 
+              id="start" 
               type="text" 
-              placeholder="Destination"
+              placeholder="Notification Address"
               onChange={this.handleTextInputChange.bind(this)}
-              value= {destinationValue}
+              value= {startValue}
             />            
             <InputGroup.Button>
               <Button
                 type="submit"
                 disabled={!hasUserInput}
-                onClick= {this.goButtonClicked}>Go</Button>
+                onClick= {this.goButtonClicked.bind(this)}>Go</Button>
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>
@@ -325,53 +190,7 @@ export default class Notifications extends PureComponent {
   }
 
 
-  //render the button group
-  _renderRouteButtonGroup(){
-    const selectedButton = this.state.selectedRoute;
-    const dropdownValue = this.state.dropdownValue;
-
-    let buttonGroup = null;
-        //hacky solution to figure out which button is clicked
-    //TODO: figure out which button from the 
-    if(dropdownValue != null){
-      buttonGroup = <div className="route-button-group">
-        <Button 
-          className="route-button"
-          style = {selectedButton == 1 ? btnSelectedStyle : null} 
-          onClick = {(e) => {
-                this._onRouteButtonClick.bind(this)
-                this._onRouteButtonClick(1)
-          }}
-          >
-          Route 1   |   5.72km   |  15mins
-        </Button>
-        <Button 
-          className="route-button"
-          style = {selectedButton == 2 ? btnSelectedStyle : null} 
-          onClick = {(e) => {
-                this._onRouteButtonClick.bind(this)
-                this._onRouteButtonClick(2)
-          }}>
-
-          Route 2    |   6.35km   |   18mins
-        </Button>
-        <Button 
-          block
-          style = {selectedButton == 3 ? btnSelectedStyle : null} 
-          onClick = {(e) => {
-                this._onRouteButtonClick.bind(this)
-                this._onRouteButtonClick(3)
-          }}>
-          Route 3   |    6.17km   |   17mins
-        </Button>
-      </div>
-    }
-    
-
-    return(
-      buttonGroup
-    );
-  }
+ 
 
   //Render the Root component
   render() {
@@ -386,10 +205,7 @@ export default class Notifications extends PureComponent {
         <div id="navigation-group">
           <div id="dropdown">
             {this._renderSearchButtons()}
-            {this._renderDropDown()}
-            }
           </div>
-          {this._renderRouteButtonGroup()}
         </div>
       </div>
     );

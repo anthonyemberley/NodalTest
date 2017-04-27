@@ -366,7 +366,6 @@ export default class Recommendations extends PureComponent {
           <div id="dropdown">
             {this._renderSearchButtons()}
             {this._renderDropDown()}
-            }
           </div>
           {this._renderRouteButtonGroup()}
         </div>
