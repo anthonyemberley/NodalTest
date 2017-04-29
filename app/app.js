@@ -5,6 +5,7 @@ import NodalNav from './components/nodal-navbar.js'
 import Recommendations from './components/recommendations.js'
 import Notifications from './components/notifications.js'
 import RouteAnnotations from './components/route-annotations.js'
+import Clusters from './components/clusters.js'
 import {
   BrowserRouter as Router,
   Route,
@@ -45,6 +46,10 @@ class Root extends PureComponent {
             <Route 
               path='/Recommendations' 
               component={Recommendations}>
+            </Route>
+            <Route 
+              path='/Clusters' 
+              component={Clusters}>
             </Route>
             <Route 
               path='/Notifications' 

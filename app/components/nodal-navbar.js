@@ -31,7 +31,9 @@ export default class NodalNav extends Component {
               <Link to="/Recommendations">Recommendations</Link>
             </NavItem>
             <NavDropdown eventKey={2} title="Scores" id="basic-nav-dropdown">
-              <MenuItem eventKey={2.1}>Crime Clustering</MenuItem>
+              <MenuItem eventKey={2.1}>
+                  <Link to="/Clusters">Clusters</Link>
+              </MenuItem>
               <MenuItem eventKey={2.2}>
                 <Link to="/RouteAnnotations">Route Annotations</Link>
               </MenuItem>
