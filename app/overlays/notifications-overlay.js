@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import DeckGL, {ScatterplotLayer} from 'deck.gl';
 
- 
+
 
 function getSize(viewport) {
   let zoom = viewport.zoom;

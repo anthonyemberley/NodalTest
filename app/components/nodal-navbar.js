@@ -37,7 +37,9 @@ export default class NodalNav extends Component {
               <MenuItem eventKey={2.2}>
                 <Link to="/RouteAnnotations">Route Annotations</Link>
               </MenuItem>
-              <MenuItem eventKey={2.3}>Heatmaps</MenuItem>
+              <MenuItem eventKey={2.3}>
+                <Link to="/Heatmaps">Heatmaps</Link>
+              </MenuItem>
               <MenuItem eventKey={3.3}>Device Locations</MenuItem>
             </NavDropdown>
             <NavItem eventKey={4} >

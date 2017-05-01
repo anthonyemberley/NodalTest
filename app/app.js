@@ -6,11 +6,14 @@ import Recommendations from './components/recommendations.js'
 import Notifications from './components/notifications.js'
 import RouteAnnotations from './components/route-annotations.js'
 import Clusters from './components/clusters.js'
+import Heatmap from './components/heatmap.js'
+import Root2 from './tests/app.js'
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
+
 
 
 
@@ -23,6 +26,7 @@ class Root extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+
 
     };
 
@@ -58,6 +62,10 @@ class Root extends PureComponent {
             <Route 
               path='/RouteAnnotations' 
               component={RouteAnnotations}>
+            </Route>
+            <Route 
+              path='/Heatmaps' 
+              component={Heatmap}>
             </Route>
           </div>
         </div>
